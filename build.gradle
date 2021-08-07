@@ -1,6 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = "1.4.32"
+    ext.constraintlayout_version = "2.1.0"
+    ext.lifecycler_version = "2.3.1"
+    ext.hilt_version = "1.0.0"
+    ext.okhttp_version = "4.9.0"
+    ext.retrofit_version = "2.9.0"
+    ext.moshi_version = "1.12.0"
+    ext.moshi_kotlin_version = "1.11.0"
+
+
     repositories {
         google()
         jcenter()
@@ -8,9 +17,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.37'
     }
 }
 
