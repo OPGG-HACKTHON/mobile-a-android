@@ -24,10 +24,11 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
      
-     
+    - name: Change gradlew permissions
+      run: chmod +x ./gradlew
+
     - name: Build APK
       run: bash ./gradlew assembleDebug --stacktrace
-     
      
     - run: './gradlew assembleDebug'
     - uses: MeilCli/slack-upload-file@v1
