@@ -1,4 +1,4 @@
-package com.opgg.chai.ui.main.home
+package com.opgg.chai.ui.main.rank
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
