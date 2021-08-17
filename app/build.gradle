@@ -6,7 +6,6 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -58,6 +57,8 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$dagger_version"
     kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
     implementation "androidx.hilt:hilt-common:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_version"
 
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
