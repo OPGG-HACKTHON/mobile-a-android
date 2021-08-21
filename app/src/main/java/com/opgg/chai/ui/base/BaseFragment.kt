@@ -10,10 +10,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
     protected lateinit var binding: VB
     protected abstract var viewModel: VM
+    protected lateinit var navController: NavController
 
     @get:LayoutRes
     protected abstract val layoutRes: Int
@@ -25,6 +28,8 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        navController = this.findNavController()
+
         binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
         binding.executePendingBindings()
 
