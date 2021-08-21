@@ -2,4 +2,25 @@
     <string name="app_name">Chai</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- auth -->
+    <string name="server_client_id">742823777512-r3petmmlnt08radg6uu8hhecubnutpov.apps.googleusercontent.com</string>
+    <string name="login_google_btn">구글계정으로 로그인</string>
+
+    <!-- join -->
+    <string name="join_terms">약관 동의</string>
+    <string name="join_info">기본정보</string>
+    <string name="join_finish">가입완료</string>
+    <string name="join_google">구글계정으로 로그인하셨습니다.</string>
+    <string name="join_term_check_all">전체 내용에 동의합니다.</string>
+    <string name="email">이메일 주소</string>
+    <string name="lol_nikcname">롤닉네임</string>
+    <string name="belongs">소속</string>
+
+    <string-array name="belong_list">
+        <item>고등학교</item>
+        <item>중학교</item>
+        <item>초등학교</item>
+    </string-array>
+
 </resources>
