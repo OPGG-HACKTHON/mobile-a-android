@@ -10,6 +10,7 @@ buildscript {
     ext.moshi_version = "1.12.0"
     ext.moshi_kotlin_version = "1.11.0"
     ext.nav_version = "2.3.5"
+    ext.google_login_version = "19.2.0"
 
 
     repositories {
