@@ -1,10 +1,5 @@
-package com.opgg.chai.ui.auth.join
+package com.opgg.chai.ui.auth.join.form
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentJoinFormBinding
 import com.opgg.chai.ui.base.BaseFragment

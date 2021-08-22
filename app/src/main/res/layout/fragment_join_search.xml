@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.auth.join.JoinSearchFragment">
+        tools:context=".ui.auth.join.search.JoinSearchFragment">
 
         <ImageButton
             android:id="@+id/back_btn"

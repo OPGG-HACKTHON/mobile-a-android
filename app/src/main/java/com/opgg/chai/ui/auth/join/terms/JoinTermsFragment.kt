@@ -1,4 +1,4 @@
-package com.opgg.chai.ui.auth.join
+package com.opgg.chai.ui.auth.join.terms
 
 import android.content.res.ColorStateList
 import android.os.Bundle
