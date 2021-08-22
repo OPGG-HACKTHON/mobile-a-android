@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/search_none"
+            android:visibility="invisible"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textAlignment="center"

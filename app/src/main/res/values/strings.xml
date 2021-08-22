@@ -11,7 +11,7 @@
     <string name="join_terms">약관 동의</string>
     <string name="join_info">기본정보</string>
     <string name="join_finish">가입완료</string>
-    <string name="join_google">구글계정으로 로그인하셨습니다.</string>
+    <string name="join_google"><font color='#397EF6'>구글계정</font>으로 로그인하셨습니다.</string>
     <string name="join_term_check_all">전체 내용에 동의합니다.</string>
     <string name="email">이메일 주소</string>
     <string name="lol_nikcname">롤닉네임</string>

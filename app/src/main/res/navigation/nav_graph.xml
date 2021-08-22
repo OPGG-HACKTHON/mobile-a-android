@@ -65,5 +65,12 @@
         <action
             android:id="@+id/action_joinFormFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_joinFormFragment_to_joinSearchFragment"
+            app:destination="@id/joinSearchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/joinSearchFragment"
+        android:name="com.opgg.chai.ui.auth.join.search.JoinSearchFragment"
+        android:label="JoinSearchFragment" />
 </navigation>
