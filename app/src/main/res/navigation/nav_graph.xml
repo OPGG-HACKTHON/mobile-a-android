@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/joinTermsFragment"
-        android:name="com.opgg.chai.ui.auth.join.JoinTermsFragment"
+        android:name="com.opgg.chai.ui.auth.join.terms.JoinTermsFragment"
         android:label="fragment_join"
         tools:layout="@layout/fragment_join" >
         <action
@@ -57,7 +57,7 @@
         tools:layout="@layout/fragment_battle" />
     <fragment
         android:id="@+id/joinFormFragment"
-        android:name="com.opgg.chai.ui.auth.join.JoinFormFragment"
+        android:name="com.opgg.chai.ui.auth.join.form.JoinFormFragment"
         android:label="JoinFormFragment" >
         <action
             android:id="@+id/action_joinFormFragment_to_homeFragment"
@@ -65,5 +65,12 @@
         <action
             android:id="@+id/action_joinFormFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_joinFormFragment_to_joinSearchFragment"
+            app:destination="@id/joinSearchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/joinSearchFragment"
+        android:name="com.opgg.chai.ui.auth.join.search.JoinSearchFragment"
+        android:label="JoinSearchFragment" />
 </navigation>

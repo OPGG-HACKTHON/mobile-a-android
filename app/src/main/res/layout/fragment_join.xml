@@ -6,11 +6,11 @@
     <data>
         <variable
             name="vm"
-            type="com.opgg.chai.ui.auth.join.JoinTermsViewModel" />
+            type="com.opgg.chai.ui.auth.join.terms.JoinTermsViewModel" />
 
         <variable
             name="adapter"
-            type="com.opgg.chai.ui.auth.join.JoinTermsAdapter" />
+            type="com.opgg.chai.ui.auth.join.terms.JoinTermsAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

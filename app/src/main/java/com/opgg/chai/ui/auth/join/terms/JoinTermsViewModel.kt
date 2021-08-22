@@ -1,4 +1,4 @@
-package com.opgg.chai.ui.auth.join
+package com.opgg.chai.ui.auth.join.terms
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

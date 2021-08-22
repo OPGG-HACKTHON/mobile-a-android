@@ -4,13 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.opgg.chai.ui.auth.join.form.JoinFormViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.auth.join.JoinFormFragment">
+        tools:context=".ui.auth.join.form.JoinFormFragment">
 
         <ImageButton
             android:layout_width="17dp"
@@ -19,6 +21,7 @@
             android:background="@color/fill_background"
             android:layout_marginTop="13dp"
             android:layout_marginLeft="18dp"
+            android:onClick="@{}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -65,88 +68,115 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/label_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:isScrollContainer="true"
             android:layout_marginTop="94dp"
-            android:layout_marginLeft="24dp"
-            android:text="@string/email"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/join_close" />
+            app:layout_constraintTop_toBottomOf="@id/join_close"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <EditText
-            android:id="@+id/name_edt"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="4dp"
-            android:inputType="none"
-            android:background="@drawable/rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_email"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="24dp">
 
-        <TextView
-            android:id="@+id/label_lol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:layout_marginLeft="24dp"
-            android:text="@string/lol_nikcname"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_edt" />
+                <TextView
+                    android:id="@+id/label_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:text="@string/email"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
-        <EditText
-            android:id="@+id/lol_edt"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_lol"/>
+                <EditText
+                    android:id="@+id/email_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="4dp"
+                    android:enabled="false"
+                    android:padding="5dp"
+                    android:paddingStart="10dp"
+                    android:text="@{vm.emailAddress}"
+                    android:background="@drawable/rectangle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_email"/>
 
-        <TextView
-            android:id="@+id/label_belongs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="24dp"
-            android:text="@string/belongs"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lol_edt" />
+                <TextView
+                    android:id="@+id/label_lol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginLeft="24dp"
+                    android:text="@string/lol_nikcname"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/email_edt" />
 
-        <Spinner
-            android:id="@+id/belong_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_belongs" />
+                <EditText
+                    android:id="@+id/lol_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="4dp"
+                    android:lines="1"
+                    android:background="@drawable/rectangle"
+                    android:padding="5dp"
+                    android:paddingStart="10dp"
+                    android:text="@{vm.lolName}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_lol"/>
 
-        <EditText
-            android:id="@+id/belong_edt"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/rectangle"
-            app:layout_constraintStart_toEndOf="@id/belong_spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_belongs"/>
+                <TextView
+                    android:id="@+id/label_belongs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="24dp"
+                    android:text="@string/belongs"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lol_edt" />
 
+                <Spinner
+                    android:id="@+id/belong_spinner"
+                    android:layout_width="125dp"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/ic_chai_spinner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_belongs" />
+
+                <EditText
+                    android:id="@+id/belong_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rectangle"
+                    android:focusable="false"
+                    android:padding="5dp"
+                    app:layout_constraintStart_toEndOf="@id/belong_spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_belongs"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <Button
             android:layout_width="match_parent"

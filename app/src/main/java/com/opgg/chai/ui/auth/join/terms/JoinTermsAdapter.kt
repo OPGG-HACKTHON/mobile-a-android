@@ -1,4 +1,4 @@
-package com.opgg.chai.ui.auth.join
+package com.opgg.chai.ui.auth.join.terms
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -47,6 +47,8 @@ class JoinTermsAdapter : RecyclerView.Adapter<JoinTermsAdapter.JoinTermsVH>() {
     override fun getItemCount(): Int = termList.size
 
     fun addTerm(term: List<TermItem>) {
+        termList.clear()
+
         termList.addAll(term)
         notifyDataSetChanged()
     }
