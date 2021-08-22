@@ -16,6 +16,8 @@
     <string name="email">이메일 주소</string>
     <string name="lol_nikcname">롤닉네임</string>
     <string name="belongs">소속</string>
+    <string name="search_school_hint">학교이름을 검색해 주세요</string>
+    <string name="search_none">검색결과가 없습니다.</string>
 
     <string-array name="belong_list">
         <item>고등학교</item>
