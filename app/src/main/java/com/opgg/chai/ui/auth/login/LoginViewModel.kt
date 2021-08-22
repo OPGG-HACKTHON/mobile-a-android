@@ -1,15 +1,16 @@
 package com.opgg.chai.ui.auth.login
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.opgg.chai.R
+import javax.inject.Inject
 
-class LoginViewModel(private val context: Context) : ViewModel() {
+class LoginViewModel @Inject constructor(val googleClient: GoogleSignInClient) : ViewModel() {
     lateinit var navController: NavController
 
     fun handleGoogleLogin(task: Task<GoogleSignInAccount>) {

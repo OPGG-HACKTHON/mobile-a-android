@@ -11,21 +11,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentLoginBinding
 import com.opgg.chai.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
-    override lateinit var viewModel: LoginViewModel
+    @Inject override lateinit var viewModel: LoginViewModel
     override val layoutRes: Int = R.layout.fragment_login
-
-    private val googleSignClient: GoogleSignInClient by lazy {
-        //사용자 데이터 요청
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(resources.getString(R.string.server_client_id))
-            .requestEmail() //이메일 정보 요청
-            .build()
-
-        GoogleSignIn.getClient(requireContext(), gso)
-    }
 
     private val loginWithGoogle = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
@@ -38,13 +31,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
-        viewModel = LoginViewModel(requireContext())
         viewModel.navController = navController
 
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
-        binding.loginGoogleButton.setOnClickListener { googleSignClient.signInIntent.apply{ loginWithGoogle.launch(this)} }
+        binding.loginGoogleButton.setOnClickListener { viewModel.googleClient.signInIntent.apply{ loginWithGoogle.launch(this)} }
         return view
     }
 }
