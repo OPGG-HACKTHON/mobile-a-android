@@ -7,6 +7,9 @@
         <variable
             name="vm"
             type="com.opgg.chai.ui.main.rank.RankViewModel" />
+        <variable
+            name="adapter"
+            type="com.opgg.chai.adapters.RankAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,39 +73,20 @@
             android:layout_width="0dp"
             android:layout_height="48dp"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_margin="16dp"
-            android:background="@drawable/bg_rank_layout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rank_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            tools:listitem="@layout/item_rank"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:adapter="@{adapter}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/champion_rank"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="0dp">
-
-            <TextView
-                style="@style/header4"
-                android:id="@+id/rank_title"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="22dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="서울고에서 나의 랭크"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="14dp"
-                app:layout_constraintTop_toBottomOf="@id/rank_title"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="0dp"
-                tools:itemCount="10"
-                tools:listitem="@layout/item_rank"
-                android:layout_height="0dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

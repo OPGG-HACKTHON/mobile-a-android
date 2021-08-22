@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.opgg.chai.R
+import com.opgg.chai.adapters.RankAdapter
 import com.opgg.chai.databinding.FragmentRankBinding
-import com.opgg.chai.ui.auth.join.JoinViewModel
-import com.opgg.chai.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,5 +30,24 @@ class RankFragment : Fragment(R.layout.fragment_rank) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            fragment = this@RankFragment
+            vm = this@RankFragment.vm
+            adapter = RankAdapter()
+        }
+        subscribeObserver()
+        performAction()
+    }
+
+    private fun subscribeObserver() {
+        with(vm) {
+            rank.observe(viewLifecycleOwner) {
+                binding.adapter?.submitList("Title", it)
+            }
+        }
+    }
+
+    private fun performAction() {
+        vm.loadRank()
     }
 }
