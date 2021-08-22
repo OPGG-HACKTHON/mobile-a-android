@@ -13,4 +13,27 @@
     <color name="primary">#1D202B</color>
     <color name="grey100">#000000</color>
     <color name="contents">#F9F9FB</color>
+
+    <!-- chai color -->
+    <color name="text_primary">#1D202B</color>
+    <color name="text_secondary">#878C97</color>
+    <color name="text_disabled">#CFD2D9</color>
+    <color name="text_case050">#440099</color>
+
+    <color name="fill_base">#FFFFFFFF</color>
+    <color name="fill_elevated">#FFFFFF</color>
+    <color name="fill_contents">#F9F9FB</color>
+    <color name="fill_background">#F9F9FB</color>
+    <color name="fill_grouped">#F0F2F4</color>
+    <color name="fill_disabled">#F0F2F4</color>
+    
+    <color name="fill_default">#A8ACB8</color>
+    <color name="fill_grey040">#CFD2D9</color>
+    <color name="fill_grey100">#000000</color>
+    
+    <color name="fill_blue">#397EF6</color>
+    <color name="fill_alert">#F1114B</color>
+    <color name="fill_point">#E9FF01</color>
+    <color name="fill_ash">#EBF2FB</color>
+    <color name="fill_pink">#FEE7ED</color>
 </resources>
