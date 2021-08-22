@@ -43,9 +43,22 @@
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/rankFragment"
-        android:name="com.opgg.chai.ui.main.home.RankFragment"
+        android:name="com.opgg.chai.ui.main.rank.RankFragment"
         android:label="fragment_rank"
-        tools:layout="@layout/fragment_rank" />
+        tools:layout="@layout/fragment_rank" >
+        <action
+            android:id="@+id/action_homeFragment_to_rankInSchoolFragment"
+            app:destination="@id/rankInSchoolFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/rankInSchoolFragment"
+        android:name="com.opgg.chai.ui.main.rank.RankInSchoolFragment"
+        android:label="fragment_rank_in_school"
+        tools:layout="@layout/fragment_rank_in_school" />
+
+
     <fragment
         android:id="@+id/battleFragment"
         android:name="com.opgg.chai.ui.main.home.BattleFragment"

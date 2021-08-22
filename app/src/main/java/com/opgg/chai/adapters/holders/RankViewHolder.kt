@@ -16,6 +16,16 @@ class RankViewHolder(view: View): BaseViewHolder<ItemRankBinding, RankItem>(view
             return RankViewHolder(view)
         }
     }
+
+    init {
+        binding.rankItemLayout.setOnClickListener {
+            itemClick?.invoke(it, adapterPosition)
+        }
+    }
+
+    var itemClick: ((View, Int) -> Unit)? = null
+
+
     override fun onBind(item: RankItem) {
         binding.data = item
     }
