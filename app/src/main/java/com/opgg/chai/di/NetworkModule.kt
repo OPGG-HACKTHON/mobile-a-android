@@ -4,14 +4,14 @@ import com.opgg.chai.model.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ApplicationComponent::class)
 object NetworkModule {
 
     @Provides

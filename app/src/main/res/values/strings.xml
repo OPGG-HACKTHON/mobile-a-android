@@ -3,6 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- rank !-->
+    <string name="rank_individual">개인랭킹</string>
+    <string name="rank_school">학교랭킹</string>
+    <string name="rank_champion">챔피언 랭킹 보기</string>
+    <string name="rank_in_school">학교 정보</string>
+
     <!-- auth -->
     <string name="server_client_id">742823777512-r3petmmlnt08radg6uu8hhecubnutpov.apps.googleusercontent.com</string>
     <string name="login_google_btn">구글계정으로 로그인</string>
