@@ -11,6 +11,7 @@ buildscript {
     ext.moshi_kotlin_version = "1.11.0"
     ext.nav_version = "2.3.5"
     ext.google_login_version = "19.2.0"
+    ext.glide_version = "4.10.0"
 
 
     repositories {
