@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/battleFragment"
+        android:title="Battle"
+        android:icon="@drawable/ic_battle"/>
+    <item
+        android:id="@+id/rankFragment"
+        android:title="Ranking"
+        android:icon="@drawable/ic_ranking"/>
+    <item
+        android:id="@+id/settingFragment"
+        android:title="Setting"
+        android:icon="@drawable/ic_setting"/>
+
+</menu>
