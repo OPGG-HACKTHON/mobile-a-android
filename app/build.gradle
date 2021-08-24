@@ -78,5 +78,5 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
     //google login
-    implementation "com.google.android.gms:play-services:+"
+    implementation "com.google.android.gms:play-services-auth:$google_login_version"
 }
