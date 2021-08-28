@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.opgg.chai.ui.auth.join.search.JoinSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,10 +22,12 @@
             android:background="@color/fill_background"
             android:layout_marginTop="13dp"
             android:layout_marginLeft="18dp"
+            android:onClick="@{() -> vm.movePageBack()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
+            android:id="@+id/search_school_edt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/fill_background"
@@ -69,7 +73,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guide_header"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_search_result"/>
+            tools:listitem="@layout/item_search_result"
+            addSchoolData="@{vm.schoolList}"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

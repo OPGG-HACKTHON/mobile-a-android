@@ -13,6 +13,8 @@ class JoinFormViewModel constructor(context: Context) : ViewModel() {
 
     init {
         val alreadySign = GoogleSignIn.getLastSignedInAccount(context)
-        _emailAddress.value = alreadySign.email
+        alreadySign?.let {
+            _emailAddress.value = it.email
+        }
     }
 }
