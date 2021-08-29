@@ -13,8 +13,10 @@ import kotlinx.coroutines.withContext
 
 class JoinSearchViewModel(val authService: AuthService) : ViewModel() {
     lateinit var navController: NavController
-    var division: String = "고등학교"
+    var division: String = "고등학교" // default value
 
+    private val _isNone: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isNone: LiveData<Boolean> = _isNone
     private val _schoolList: MutableLiveData<List<SchoolInfo>> = MutableLiveData()
     val schoolList: LiveData<List<SchoolInfo>> = _schoolList
 
@@ -24,7 +26,10 @@ class JoinSearchViewModel(val authService: AuthService) : ViewModel() {
             withContext(Dispatchers.IO) {
                 try {
                     val list: List<SchoolInfo>? = authService.searchSchool(division, word)
-                    list?.let { setSchoolData(it) }
+                    list?.let {
+                        if(it.size > 0) setSchoolData(list)
+                        else { withContext(Dispatchers.Main){ _isNone.value = true} }
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -35,6 +40,7 @@ class JoinSearchViewModel(val authService: AuthService) : ViewModel() {
     suspend fun setSchoolData(list: List<SchoolInfo>) {
         withContext(Dispatchers.Main) {
             _schoolList.value = list
+            _isNone.value = false
         }
     }
 

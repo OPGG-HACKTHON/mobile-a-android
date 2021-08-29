@@ -3,7 +3,6 @@ package com.opgg.chai.di
 import android.content.Context
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.opgg.chai.model.remote.AuthService
-import com.opgg.chai.ui.auth.join.form.JoinFormFragment
 import com.opgg.chai.ui.auth.join.form.JoinFormViewModel
 import com.opgg.chai.ui.auth.join.search.JoinSearchViewModel
 import com.opgg.chai.ui.auth.login.LoginViewModel
@@ -23,11 +22,14 @@ object AuthModule {
         GoogleUtils.getGoogleSignClient(context)
 
     @Provides
-    fun provideLoginViewModel(googleClient: GoogleSignInClient, retrofit: Retrofit) = LoginViewModel(googleClient, retrofit.create(AuthService::class.java))
+    fun provideLoginViewModel(googleClient: GoogleSignInClient, retrofit: Retrofit) =
+        LoginViewModel(googleClient, retrofit.create(AuthService::class.java))
 
     @Provides
-    fun provideJoinFormFragment(@ApplicationContext context: Context) = JoinFormViewModel(context)
+    fun provideJoinFormFragment(@ApplicationContext context: Context, retrofit: Retrofit) =
+        JoinFormViewModel(context, retrofit.create(AuthService::class.java))
 
     @Provides
-    fun provideJoinSearchFragment(retrofit: Retrofit) = JoinSearchViewModel(retrofit.create(AuthService::class.java))
+    fun provideJoinSearchFragment(retrofit: Retrofit) =
+        JoinSearchViewModel(retrofit.create(AuthService::class.java))
 }

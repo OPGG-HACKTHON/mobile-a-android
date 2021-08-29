@@ -8,7 +8,7 @@ import com.opgg.chai.R
 import com.opgg.chai.databinding.ItemSearchResultBinding
 import com.opgg.chai.model.data.auth.SchoolInfo
 
-class JoinSearchAdapter : RecyclerView.Adapter<JoinSearchAdapter.JoinSearchVH>() {
+class JoinSearchAdapter(val listener: JoinSearchItemListener) : RecyclerView.Adapter<JoinSearchAdapter.JoinSearchVH>() {
     private val schoolList = ArrayList<SchoolInfo>()
 
     inner class JoinSearchVH(val binding: ItemSearchResultBinding) :
@@ -31,6 +31,8 @@ class JoinSearchAdapter : RecyclerView.Adapter<JoinSearchAdapter.JoinSearchVH>()
 
     override fun onBindViewHolder(holder: JoinSearchVH, position: Int) {
         holder.bind(schoolList[position])
+
+        holder.itemView.setOnClickListener { listener.seletedItem(schoolList[position])}
     }
 
     override fun getItemCount(): Int {

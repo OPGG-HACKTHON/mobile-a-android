@@ -33,6 +33,7 @@ interface AuthService {
         @Field("accessToken") accessToken: String
     ): UserInfo
 
+    //학교 조회 api
     @GET("/schools/search")
     suspend fun searchSchool(
         @Query("division") division: String,

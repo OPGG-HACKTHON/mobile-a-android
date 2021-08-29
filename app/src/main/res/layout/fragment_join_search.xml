@@ -7,6 +7,9 @@
         <variable
             name="vm"
             type="com.opgg.chai.ui.auth.join.search.JoinSearchViewModel" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +38,7 @@
             android:inputType="text"
             android:hint="@string/search_school_hint"
             android:textSize="16sp"
+            android:paddingStart="5dp"
             app:layout_constraintStart_toEndOf="@id/back_btn"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/search_none"
-            android:visibility="invisible"
+            android:visibility="@{vm.isNone ? View.VISIBLE : View.INVISIBLE}"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -70,6 +74,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="56dp"
+            android:visibility="@{!vm.isNone? View.VISIBLE: View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guide_header"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
