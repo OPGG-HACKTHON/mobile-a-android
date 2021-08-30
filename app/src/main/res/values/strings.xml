@@ -36,4 +36,8 @@
         <item>초등학교</item>
     </string-array>
 
+    <!-- battle -->
+    <string name="battle_search">배틀할 상대를 검색해주세요.</string>
+    <string name="battle_recent">최근 대결상대</string>
+
 </resources>
