@@ -10,7 +10,7 @@
 
         <variable
             name="adapter"
-            type="com.opgg.chai.adapters.RankAdapter" />
+            type="com.opgg.chai.ui.main.rank.adapters.RankAdapter" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/bg"

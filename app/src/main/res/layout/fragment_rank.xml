@@ -9,7 +9,7 @@
             type="com.opgg.chai.ui.main.rank.RankViewModel" />
         <variable
             name="adapter"
-            type="com.opgg.chai.adapters.RankAdapter" />
+            type="com.opgg.chai.ui.main.rank.adapters.RankAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
