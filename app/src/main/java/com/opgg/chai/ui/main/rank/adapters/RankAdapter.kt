@@ -1,13 +1,11 @@
-package com.opgg.chai.adapters
+package com.opgg.chai.ui.main.rank.adapters
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.opgg.chai.adapters.holders.RankBottomViewHolder
-import com.opgg.chai.adapters.holders.RankHeaderViewHolder
-import com.opgg.chai.adapters.holders.RankViewHolder
+import com.opgg.chai.ui.main.rank.adapters.holders.RankBottomViewHolder
+import com.opgg.chai.ui.main.rank.adapters.holders.RankHeaderViewHolder
+import com.opgg.chai.ui.main.rank.adapters.holders.RankViewHolder
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.ui.base.BaseViewHolder
 

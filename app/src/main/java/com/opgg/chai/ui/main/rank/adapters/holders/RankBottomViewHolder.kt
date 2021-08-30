@@ -1,4 +1,4 @@
-package com.opgg.chai.adapters.holders
+package com.opgg.chai.ui.main.rank.adapters.holders
 
 import android.view.LayoutInflater
 import android.view.View

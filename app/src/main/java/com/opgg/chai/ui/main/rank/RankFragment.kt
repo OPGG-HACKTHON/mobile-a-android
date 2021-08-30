@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.opgg.chai.R
-import com.opgg.chai.adapters.RankAdapter
+import com.opgg.chai.ui.main.rank.adapters.RankAdapter
 import com.opgg.chai.databinding.FragmentRankBinding
 import com.opgg.chai.model.data.RankItem
 import dagger.hilt.android.AndroidEntryPoint
