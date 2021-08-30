@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentLoginBinding
 import com.opgg.chai.ui.base.BaseFragment
@@ -37,6 +35,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         binding.lifecycleOwner = this
 
         binding.loginGoogleButton.setOnClickListener { viewModel.googleClient.signInIntent.apply{ loginWithGoogle.launch(this)} }
+
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.checkIsAlreadySigned()
     }
 }

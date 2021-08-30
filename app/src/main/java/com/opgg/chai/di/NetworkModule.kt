@@ -16,7 +16,7 @@ object NetworkModule {
 
     @Provides
     fun provideWebService(okHttpClient: OkHttpClient) = Retrofit.Builder()
-        .baseUrl("domain")
+        .baseUrl("https://api.opggmobilea.com")
         .addConverterFactory(MoshiConverterFactory.create())
         .client(okHttpClient)
         .build()

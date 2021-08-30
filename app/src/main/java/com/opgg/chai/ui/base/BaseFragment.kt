@@ -31,6 +31,8 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
         navController = this.findNavController()
 
         binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
+        binding.lifecycleOwner = this
+
         binding.executePendingBindings()
 
         return binding.root

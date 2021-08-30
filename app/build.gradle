@@ -20,10 +20,23 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        keystoreInfo {
+            keyAlias 'mobilea'
+            keyPassword 'mobilea6'
+            storeFile file('chai.keystore')
+            storePassword 'mobilea6'
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.keystoreInfo
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keystoreInfo
         }
     }
     compileOptions {

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentJoinBinding
-import com.opgg.chai.model.data.TermItem
+import com.opgg.chai.model.data.auth.TermItem
 import com.opgg.chai.ui.base.BaseFragment
 
 class JoinTermsFragment : BaseFragment<FragmentJoinBinding, JoinTermsViewModel>() {
