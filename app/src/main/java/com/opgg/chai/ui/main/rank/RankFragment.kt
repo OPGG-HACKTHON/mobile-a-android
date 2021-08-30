@@ -38,7 +38,6 @@ class RankFragment : Fragment() {
             adapter = RankAdapter(onRankItemClick)
         }
         subscribeObserver()
-        performAction()
     }
 
     private fun subscribeObserver() {
@@ -47,10 +46,6 @@ class RankFragment : Fragment() {
                 binding.adapter?.submitList("서울고에서 나의 랭킹", it)
             }
         }
-    }
-
-    private fun performAction() {
-        vm.loadRank()
     }
 
     private val onRankItemClick = { view: View, rankItem: RankItem ->
