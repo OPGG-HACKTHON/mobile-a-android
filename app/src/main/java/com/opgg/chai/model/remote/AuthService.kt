@@ -7,31 +7,17 @@ import retrofit2.http.*
 
 interface AuthService {
 
-    @FormUrlEncoded
     @POST("/auth/login")
-    suspend fun isOurUser(
-        @Field("authFrom") authFrom: String,
-        @Field("accesstoken") accesstoken: String
-    ): LoginResult?
+    suspend fun isOurUser(@Body authData: Map<String, String>): LoginResult?
 
 
     // 사용자 가입 api
-    @FormUrlEncoded
     @POST("/auth/signup")
-    suspend fun signupUser(
-        @Field("authForm") authFrom: String,
-        @Field("email") email: String,
-        @Field("LOLNickName") lolNickName: String,
-        @Field("schoolId") schoolId: String,
-        @Field("accesstoken") accesstoken: String
-    ): UserInfo?
+    suspend fun signupUser(@Body authData: Map<String, String>): UserInfo?
 
     //사용자 정보 조회
-    @FormUrlEncoded
     @POST("/auth/validate")
-    suspend fun getUserInfo(
-        @Field("accessToken") accessToken: String
-    ): UserInfo
+    suspend fun getUserInfo(@Body authData: Map<String, String>): UserInfo
 
     //학교 조회 api
     @GET("/schools/search")
