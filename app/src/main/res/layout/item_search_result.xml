@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="item"
+            type="com.opgg.chai.model.data.auth.SchoolInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
             android:layout_marginTop="17dp"
+            android:text="@{item.name}"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,6 +41,7 @@
             android:id="@+id/search_item_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{item.address}"
             android:textSize="12sp"
             android:ellipsize="end"
             android:layout_marginTop="6dp"

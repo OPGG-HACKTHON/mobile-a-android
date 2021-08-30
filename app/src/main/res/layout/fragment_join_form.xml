@@ -21,7 +21,7 @@
             android:background="@color/fill_background"
             android:layout_marginTop="13dp"
             android:layout_marginLeft="18dp"
-            android:onClick="@{}"
+            android:onClick="@{() -> vm.moveBackPage()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -45,6 +45,7 @@
             android:background="@color/fill_background"
             android:layout_marginTop="13dp"
             android:layout_marginRight="20dp"
+            android:onClick="@{() -> vm.moveBackPage()}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -134,7 +135,7 @@
                     android:background="@drawable/rectangle"
                     android:padding="5dp"
                     android:paddingStart="10dp"
-                    android:text="@{vm.lolName}"
+                    android:text="@={vm.lolName}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_lol"/>
@@ -171,6 +172,8 @@
                     android:background="@drawable/rectangle"
                     android:focusable="false"
                     android:padding="5dp"
+                    android:text="@{vm.schoolName}"
+                    android:paddingStart="10dp"
                     app:layout_constraintStart_toEndOf="@id/belong_spinner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_belongs"/>
@@ -179,6 +182,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <Button
+            android:id="@+id/join_form_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="56dp"
@@ -189,6 +193,8 @@
             android:textSize="16sp"
             android:stateListAnimator="@null"
             app:elevation="20dp"
+            android:enabled="false"
+            android:onClick="@{() -> vm.signupUser()}"
             android:background="@drawable/r_f_button"
             android:backgroundTint="@color/fill_default"
             app:layout_constraintBottom_toBottomOf="parent"/>
