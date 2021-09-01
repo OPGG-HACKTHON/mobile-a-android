@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.opgg.chai.R
 import com.opgg.chai.model.data.auth.UserInfo
 import com.opgg.chai.model.remote.AuthService
 import com.opgg.chai.util.UserUtils
@@ -63,11 +64,16 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
                     val user: UserInfo? = authService.signupUser(authData)
 
                     UserUtils.userInfo = user
+                    moveHome()
 
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
         }
+    }
+
+    suspend fun moveHome() {
+        navController.navigate(R.id.action_loginFragment_to_homeFragment)
     }
 }

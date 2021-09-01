@@ -53,8 +53,6 @@ class LoginViewModel @Inject constructor(
                         put("accesstoken", account.idToken!!)
                     }
                     val result = authService.isOurUser(autData)
-                    Log.d("login result", "${result?.accessToken}")
-
                     result?.message?.let {
                         if(it.contains("유저 정보가 없습니다. 회원가입을 진행합니다.")) movePage(R.id.action_loginFragment_to_joinTermsFragment)
                         else getValidateUserInfo(result?.accessToken!!)
