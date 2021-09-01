@@ -67,7 +67,11 @@
         android:id="@+id/battleFragment"
         android:name="com.opgg.chai.ui.main.home.BattleFragment"
         android:label="fragment_battle"
-        tools:layout="@layout/fragment_battle" />
+        tools:layout="@layout/fragment_battle" >
+        <action
+            android:id="@+id/action_battleFragment_to_battleSearchFragment"
+            app:destination="@id/battleSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/joinFormFragment"
         android:name="com.opgg.chai.ui.auth.join.form.JoinFormFragment"
@@ -84,4 +88,8 @@
         android:name="com.opgg.chai.ui.auth.join.search.JoinSearchFragment"
         android:label="JoinSearchFragment" >
     </fragment>
+    <fragment
+        android:id="@+id/battleSearchFragment"
+        android:name="com.opgg.chai.ui.main.battle.BattleSearchFragment"
+        android:label="BattleSearchFragment" />
 </navigation>
