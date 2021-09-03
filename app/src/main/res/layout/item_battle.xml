@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/battle_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_rectangle"
+            android:backgroundTint="@color/fill_contents"
+            android:backgroundTintMode="src_atop">
+
+            <ImageView
+                android:id="@+id/battle_profile_img"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/profile_sample" />
+
+            <TextView
+                android:id="@+id/battle_name"
+                style="@style/title1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="16dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/battle_school"
+                app:layout_constraintLeft_toRightOf="@id/battle_profile_img"
+                app:layout_constraintRight_toLeftOf="@id/battle_recent_guide"
+                app:layout_constraintTop_toTopOf="@id/battle_profile_img"
+                tools:text="쪼렙이다말로하자" />
+
+            <TextView
+                android:id="@+id/battle_school"
+                style="@style/caption1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/battle_profile_img"
+                app:layout_constraintLeft_toLeftOf="@id/battle_name"
+                app:layout_constraintTop_toBottomOf="@id/battle_name"
+                tools:text="서초고등학교" />
+
+            <TextView
+                android:layout_width="53dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/round_rectangle"
+                android:backgroundTint="@color/fill_point"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/battle_school"
+                app:layout_constraintTop_toBottomOf="@id/battle_name"
+                tools:text="리신 장인" />
+
+            <TextView
+                android:id="@+id/battle_recent_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/battle_recent_result"
+                android:textColor="@color/grey100"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/battle_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/battle_recent_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/grey100"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/battle_recent_guide"
+                app:layout_constraintTop_toBottomOf="@id/battle_recent_guide"
+                tools:text="@string/battle_recent_win" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/battle_total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/battle_total"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:background="@drawable/round_rectangle_stroke_black"
+            app:layout_constraintTop_toBottomOf="@id/battle_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/battle_character"/>
+
+        <Button
+            android:id="@+id/battle_character"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/battle_character"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:background="@drawable/round_rectangle_stroke_black"
+            app:layout_constraintTop_toBottomOf="@id/battle_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/battle_total"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
