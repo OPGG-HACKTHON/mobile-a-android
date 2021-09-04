@@ -51,8 +51,11 @@
         android:label="fragment_rank"
         tools:layout="@layout/fragment_rank" >
         <action
-            android:id="@+id/action_homeFragment_to_rankInSchoolFragment"
+            android:id="@+id/action_rankFragment_to_rankInSchoolFragment"
             app:destination="@id/rankInSchoolFragment" />
+        <action
+            android:id="@+id/action_rankFragment_to_rankChampionFragment"
+            app:destination="@id/rankChampionChoiceFragment" />
 
     </fragment>
 
@@ -92,4 +95,8 @@
         android:id="@+id/battleSearchFragment"
         android:name="com.opgg.chai.ui.main.battle.BattleSearchFragment"
         android:label="BattleSearchFragment" />
+    <fragment
+        android:id="@+id/rankChampionChoiceFragment"
+        android:label="RankChampionChoiceFragment"
+        android:name="com.opgg.chai.ui.main.rank.champion.RankChampionChoiceFragment"/>
 </navigation>

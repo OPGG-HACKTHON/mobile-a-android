@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="com.opgg.chai.model.data.ChampionItem" />
+        <import type="android.view.View"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <ImageView
+            android:id="@+id/rank_champion_image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="88dp"
+            android:layout_height="88dp"/>
+
+        <TextView
+            android:text="@{item.name}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rank_champion_image"
+            android:id="@+id/rank_champion_name"
+            android:textSize="12sp"
+            android:textColor="@color/text_primary"
+            android:textFontWeight="400"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/ic_select"
+            android:visibility="@{item.checked ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="@id/rank_champion_image"
+            app:layout_constraintRight_toRightOf="@id/rank_champion_image"
+            app:layout_constraintTop_toTopOf="@id/rank_champion_image"
+            app:layout_constraintBottom_toBottomOf="@id/rank_champion_image"
+            android:id="@+id/rank_champion_check_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

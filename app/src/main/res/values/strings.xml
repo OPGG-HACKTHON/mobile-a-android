@@ -9,10 +9,16 @@
     <string name="home_no_badge">타이틀을 설정해 보세요</string>
 
     <!-- rank !-->
+    <string name="rank">랭킹</string>
     <string name="rank_individual">개인랭킹</string>
     <string name="rank_school">학교랭킹</string>
     <string name="rank_champion">챔피언 랭킹 보기</string>
     <string name="rank_in_school">학교 정보</string>
+
+    <string name="champion">챔피언</string>
+    <string name="rank_champion_choice_step1_des">2단계 필터 설정을 통해\n더 재미있는 랭킹을 확인 해보세요.</string>
+    <string name="rank_champion_choice_step2_des">챔피언을 1개 선택해주세요.</string>
+    <string name="rank_champion_choice_submit">챔피언 선택완료</string>
 
     <!-- auth -->
     <string name="server_client_id">742823777512-r3petmmlnt08radg6uu8hhecubnutpov.apps.googleusercontent.com</string>
