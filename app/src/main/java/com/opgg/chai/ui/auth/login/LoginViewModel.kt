@@ -76,10 +76,7 @@ class LoginViewModel @Inject constructor(
     private suspend fun getValidateUserInfo(token: String) {
 
         try {
-            UserUtils.userInfo = authService.getUserInfo(HashMap<String, String>().apply {
-                put("authFrom", "google")
-                put("token", token)
-            })
+            UserUtils.userInfo = authService.getUserInfo(token)
             Log.d("login", "user info:${UserUtils.userInfo?.email}")
             movePage(R.id.action_loginFragment_to_homeFragment)
         } catch (e: java.lang.Exception) {

@@ -16,8 +16,8 @@ interface AuthService {
     suspend fun signupUser(@Body authData: Map<String, String>): UserInfo?
 
     //사용자 정보 조회
-    @POST("/auth/validate")
-    suspend fun getUserInfo(@Body authData: Map<String, String>): UserInfo
+    @POST("/auth/validate?")
+    suspend fun getUserInfo(@Query("token") token: String): UserInfo
 
     //학교 조회 api
     @GET("/schools/search")

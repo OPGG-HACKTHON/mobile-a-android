@@ -74,6 +74,6 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
     }
 
     suspend fun moveHome() {
-        navController.navigate(R.id.action_loginFragment_to_homeFragment)
+        navController.navigate(R.id.action_joinFormFragment_to_homeFragment)
     }
 }
