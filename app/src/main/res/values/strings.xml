@@ -46,5 +46,14 @@
     <string name="battle_character">캐릭터 배틀</string>
     <string name="battle_search_none">검색결과가 없습니다.\n친구를 차이에 초대해 주세요!</string>
     <string name="battle_search_share">차이 공유하기</string>
+    <string name="battle_with_other">다른상대와 배틀</string>
+    <string name="battle_for_real">실전배틀 신청하기</string>
+    <string name="battle_invitation_apply">게임 신청하기</string>
+    <string name="battle_invitation">초대장</string>
+    <string name="battle_invitation_sub">친구에게 실전 배틀 &amp;듀오를 신청해 보세요</string>
+    <string name="battle_invitation_user">받는 사람</string>
+    <string name="battle_invitation_type">배틀 형태</string>
+    <string name="battle_invitation_type_1">1:1</string>
+    <string name="battle_invitation_type_2">듀오</string>
 
 </resources>

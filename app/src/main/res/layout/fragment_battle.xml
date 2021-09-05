@@ -4,14 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.opgg.chai.ui.main.battle.BattleViewModel" />
+        <variable
+            name="view"
+            type="com.opgg.chai.ui.main.battle.BattleFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E5E5E5"
-        tools:context=".ui.main.home.BattleFragment">
+        tools:context=".ui.main.battle.BattleFragment">
 
         <TextView
             android:layout_width="match_parent"
@@ -25,6 +30,7 @@
             android:textColor="@color/fill_blue"
             android:textSize="14sp"
             android:background="@drawable/round_rectangle_stroke_black"
+            android:onClick="@{() -> view.moveBattleSearch()}"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
