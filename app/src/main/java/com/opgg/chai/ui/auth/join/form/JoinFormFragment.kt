@@ -47,6 +47,7 @@ class JoinFormFragment : BaseFragment<FragmentJoinFormBinding, JoinFormViewModel
         }
         viewModel.lolName.observe(viewLifecycleOwner, {
             if(it.length > 0) activateJoinButton()
+            else deActivateJoinButton()
         })
 
         getSelectSchoolInfo()
@@ -69,6 +70,15 @@ class JoinFormFragment : BaseFragment<FragmentJoinFormBinding, JoinFormViewModel
             binding.joinFormBtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.fill_blue, null))
         } else {
             binding.joinFormBtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.fill_blue))
+        }
+    }
+
+    fun deActivateJoinButton() {
+        binding.joinFormBtn.isEnabled = false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            binding.joinFormBtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.fill_default, null))
+        } else {
+            binding.joinFormBtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.fill_default))
         }
     }
 }

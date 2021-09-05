@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.opgg.chai.R
 import com.opgg.chai.model.data.auth.UserInfo
 import com.opgg.chai.model.remote.AuthService
 import com.opgg.chai.util.UserUtils
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class JoinFormViewModel constructor(context: Context, private val authService: AuthService) : ViewModel() {
+class JoinFormViewModel constructor(context: Context, private val authService: AuthService) :
+    ViewModel() {
     lateinit var navController: NavController
 
     private val _emailAddress = MutableLiveData<String>()
@@ -43,7 +45,7 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
 
         schoolId ?: run { result = false }
         emailAddress.value ?: run { result = false }
-        lolName.value ?: run {result = false }
+        lolName.value ?: run { result = false }
 
         return result
     }
@@ -52,20 +54,26 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val user: UserInfo? = authService.signupUser(
-                        "google",
-                        _emailAddress.value!!,
-                        lolName.value!!,
-                        schoolId!!,
-                        accessToken
-                    )
+                    val authData = HashMap<String, String>().apply {
+                        put("authFrom", "google")
+                        put("email", _emailAddress.value!!)
+                        put("LOLNickName", lolName.value!!)
+                        put("schoolId", schoolId!!)
+                        put("accesstoken", accessToken)
+                    }
+                    val user: UserInfo? = authService.signupUser(authData)
 
                     UserUtils.userInfo = user
+                    moveHome()
 
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
         }
+    }
+
+    suspend fun moveHome() {
+        navController.navigate(R.id.action_joinFormFragment_to_homeFragment)
     }
 }
