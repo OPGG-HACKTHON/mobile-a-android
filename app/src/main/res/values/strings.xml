@@ -55,5 +55,8 @@
     <string name="battle_invitation_type">배틀 형태</string>
     <string name="battle_invitation_type_1">1:1</string>
     <string name="battle_invitation_type_2">듀오</string>
+    <string name="battle_character_contents_title">비교를 원하는 챔피언</string>
+    <string name="battle_character_contents_subtitle">챔피언을 1개 선택해주세요.</string>
+    <string name="battle_character_select_finish">캐릭터 선택 완료</string>
 
 </resources>
