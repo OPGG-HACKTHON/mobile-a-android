@@ -6,17 +6,17 @@
     <data>
         <variable
             name="viewModel"
-            type="com.opgg.chai.ui.main.battle.BattleResultViewModel" />
+            type="com.opgg.chai.ui.main.battle.result.BattleResultViewModel" />
         <variable
             name="view"
-            type="com.opgg.chai.ui.main.battle.BattleResultFragment" />
+            type="com.opgg.chai.ui.main.battle.result.BattleResultFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F0F0F0"
-        tools:context=".ui.main.battle.BattleResultFragment">
+        tools:context=".ui.main.battle.result.BattleResultFragment">
 
         <View
             android:layout_width="match_parent"
@@ -340,6 +340,7 @@
             android:backgroundTint="@color/fill_blue"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+            android:onClick="@{view.moveInvitation}"
             app:layout_constraintStart_toEndOf="@id/battle_other_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/total_result_1" />

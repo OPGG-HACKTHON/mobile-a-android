@@ -1,10 +1,10 @@
-package com.opgg.chai.ui.main.battle
+package com.opgg.chai.ui.main.battle.result
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentBattleResultBinding
 import com.opgg.chai.ui.base.BaseFragment
@@ -38,5 +38,9 @@ class BattleResultFragment : BaseFragment<FragmentBattleResultBinding, BattleRes
 
     fun moveBack(view: View) {
         navController.popBackStack()
+    }
+
+    fun moveInvitation(view: View) {
+        navController.navigate(R.id.action_battleResultFragment_to_battleInvitationFragment)
     }
 }

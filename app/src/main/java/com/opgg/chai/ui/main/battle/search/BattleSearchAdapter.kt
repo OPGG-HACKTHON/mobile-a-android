@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.opgg.chai.R
 import com.opgg.chai.databinding.ItemBattleBinding
 import com.opgg.chai.model.data.battle.BattleUser
+import javax.inject.Inject
 
-class BattleSearchAdapter: RecyclerView.Adapter<BattleSearchAdapter.BattleSearchVH>() {
+class BattleSearchAdapter @Inject constructor(val viewModel: BattleSearchViewModel): RecyclerView.Adapter<BattleSearchAdapter.BattleSearchVH>() {
     private val list = ArrayList<BattleUser>()
 
     inner class BattleSearchVH(val binding: ItemBattleBinding):RecyclerView.ViewHolder(binding.root) {
@@ -27,16 +28,17 @@ class BattleSearchAdapter: RecyclerView.Adapter<BattleSearchAdapter.BattleSearch
     }
 
     override fun onBindViewHolder(holder: BattleSearchVH, position: Int) {
+        val userInfo = list[position]
         holder.bind(list[position])
 
         holder.itemView.setOnClickListener {
             holder.binding.battleCharacter.apply {
                 visibility = View.VISIBLE
-                setOnClickListener { setBattleResultPage(it, resources.getString(R.string.battle_character)) }
+                setOnClickListener { setBattleResultPage(it, resources.getString(R.string.battle_character), userInfo) }
             }
             holder.binding.battleTotal.apply {
                 visibility = View.VISIBLE
-                setOnClickListener { setBattleResultPage(it, resources.getString(R.string.battle_total)) }
+                setOnClickListener { setBattleResultPage(it, resources.getString(R.string.battle_total), userInfo) }
             }
         }
     }
@@ -51,9 +53,10 @@ class BattleSearchAdapter: RecyclerView.Adapter<BattleSearchAdapter.BattleSearch
     }
 
     //배틀 결과 페이지 이동
-    private fun setBattleResultPage(view: View, title: String) {
-        val bundle = bundleOf("title" to title)
+    private fun setBattleResultPage(view: View, title: String, userInfo: BattleUser) {
+        val bundle = bundleOf("title" to title, "userInfo" to userInfo.toDictionary())
         view.findNavController().navigate(R.id.action_battleSearchFragment_to_battleResultFragment, bundle)
+        viewModel.setBattleUser(userInfo)
     }
 
 }

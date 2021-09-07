@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/battleResultFragment"
-        android:name="com.opgg.chai.ui.main.battle.BattleResultFragment"
+        android:name="com.opgg.chai.ui.main.battle.result.BattleResultFragment"
         android:label="BattleResultFragment" >
         <action
             android:id="@+id/action_battleResultFragment_to_battleInvitationFragment"
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/battleInvitationFragment"
-        android:name="com.opgg.chai.ui.main.battle.BattleInvitationFragment"
+        android:name="com.opgg.chai.ui.main.battle.invitation.BattleInvitationFragment"
         android:label="BattleInvitationFragment" />
         android:label="BattleSearchFragment" />
 </navigation>

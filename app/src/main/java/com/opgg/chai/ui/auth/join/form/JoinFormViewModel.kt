@@ -11,12 +11,14 @@ import com.opgg.chai.R
 import com.opgg.chai.model.data.auth.UserInfo
 import com.opgg.chai.model.remote.AuthService
 import com.opgg.chai.util.UserUtils
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
+import javax.inject.Inject
 
-class JoinFormViewModel constructor(context: Context, private val authService: AuthService) :
+class JoinFormViewModel @Inject constructor(@ApplicationContext context: Context, private val authService: AuthService) :
     ViewModel() {
     lateinit var navController: NavController
 

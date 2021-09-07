@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.opgg.chai.model.data.battle.BattleUser
-import com.opgg.chai.model.remote.BattleService
+import com.opgg.chai.model.repository.BattleRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class BattleSearchViewModel(val battleService: BattleService) : ViewModel() {
+class BattleSearchViewModel @Inject constructor(val battleRepository: BattleRepository) : ViewModel() {
     val userName = MutableLiveData<String>("")
     private val _battleUserList = MutableLiveData<List<BattleUser?>>()
     val battleUserList: MutableLiveData<List<BattleUser?>> = _battleUserList
@@ -20,7 +21,7 @@ class BattleSearchViewModel(val battleService: BattleService) : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val result = battleService.searchForBattleUser(userName.value!!)
+                    val result = battleRepository.getBattleUserList(userName.value!!)
                     updateBattleUserList(result)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -46,6 +47,10 @@ class BattleSearchViewModel(val battleService: BattleService) : ViewModel() {
         withContext(Dispatchers.Main) {
             _battleUserList.value = list
         }
+    }
+
+    fun setBattleUser(userInfo: BattleUser) {
+        battleRepository.setUser(userInfo)
     }
 
 }

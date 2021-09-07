@@ -1,6 +1,8 @@
 package com.opgg.chai.di
 
 import com.opgg.chai.model.remote.ApiService
+import com.opgg.chai.model.remote.AuthService
+import com.opgg.chai.model.remote.BattleService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -31,4 +34,11 @@ object NetworkModule {
     fun webService(retrofit: Retrofit) =
         retrofit.create(ApiService::class.java)
 
+    @Singleton
+    @Provides
+    fun provideAuthService(retrofit: Retrofit) = retrofit.create(AuthService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideBattleService(retrofit: Retrofit) = retrofit.create(BattleService::class.java)
 }

@@ -4,8 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.opgg.chai.R
+import javax.inject.Inject
 
-class JoinTermsViewModel(val adapter: JoinTermsAdapter) : ViewModel() {
+class JoinTermsViewModel @Inject constructor(val adapter: JoinTermsAdapter) : ViewModel() {
     val _isSelectAll: MutableLiveData<Boolean> = adapter.isSelectAll
     lateinit var navController: NavController
 

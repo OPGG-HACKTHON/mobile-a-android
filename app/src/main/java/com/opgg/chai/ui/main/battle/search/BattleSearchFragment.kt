@@ -16,7 +16,8 @@ class BattleSearchFragment : BaseFragment<FragmentBattleSearchBinding, BattleSea
     @Inject
     override lateinit var viewModel: BattleSearchViewModel
     override val layoutRes: Int = R.layout.fragment_battle_search
-    private val adapter = BattleSearchAdapter()
+    @Inject
+    lateinit var adapter: BattleSearchAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +41,7 @@ class BattleSearchFragment : BaseFragment<FragmentBattleSearchBinding, BattleSea
         binding.battleSearch.setOnKeyListener { v, keyCode, event ->
             if (keyCode.equals(KeyEvent.KEYCODE_ENTER)) {
                 viewModel.searchChaiMember()
-            } else if(keyCode.equals(KeyEvent.KEYCODE_BACK)) {
+            } else if (keyCode.equals(KeyEvent.KEYCODE_BACK)) {
                 moveBack()
             }
 

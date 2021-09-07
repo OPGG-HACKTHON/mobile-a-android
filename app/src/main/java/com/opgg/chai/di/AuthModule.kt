@@ -20,16 +20,4 @@ object AuthModule {
     @Provides
     fun provideGoogleClient(@ApplicationContext context: Context) =
         GoogleUtils.getGoogleSignClient(context)
-
-    @Provides
-    fun provideLoginViewModel(googleClient: GoogleSignInClient, retrofit: Retrofit) =
-        LoginViewModel(googleClient, retrofit.create(AuthService::class.java))
-
-    @Provides
-    fun provideJoinFormFragment(@ApplicationContext context: Context, retrofit: Retrofit) =
-        JoinFormViewModel(context, retrofit.create(AuthService::class.java))
-
-    @Provides
-    fun provideJoinSearchFragment(retrofit: Retrofit) =
-        JoinSearchViewModel(retrofit.create(AuthService::class.java))
 }

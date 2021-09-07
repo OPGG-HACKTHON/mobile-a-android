@@ -10,4 +10,12 @@ data class BattleUser(
     val id: Int?,
     @Json(name = "lol")
     val lol: Lol?
-)
+) {
+    fun toDictionary(): HashMap<String, Any?> {
+        val resultMap = HashMap<String, Any?>()
+        resultMap.put("id", id)
+        resultMap.put("lol", lol)
+
+        return resultMap
+    }
+}
