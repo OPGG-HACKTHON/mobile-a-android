@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:background="@drawable/round_rectangle"
+            tools:text="31킬"
+            tools:backgroundTint="@color/fill_ash"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:background="@drawable/round_rectangle"
+            tools:text="최다 킬수"
+            tools:backgroundTint="@color/fill_contents"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:background="@drawable/round_rectangle"
+            tools:text="29킬"
+            tools:backgroundTint="@color/fill_contents"/>
+
+    </LinearLayout>
+</layout>

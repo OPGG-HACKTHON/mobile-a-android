@@ -4,24 +4,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="view"
+            type="com.opgg.chai.ui.main.battle.BattleSearchFragment" />
+        <variable
+            name="viewModel"
+            type="com.opgg.chai.ui.main.battle.BattleSearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#E5E5E5"
         tools:context=".ui.main.battle.BattleSearchFragment">
 
-        <EditText
-            android:id="@+id/battle_search"
+        <View
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/fill_background"
-            android:drawableLeft="@drawable/ic_back_24"
-            android:paddingLeft="19dp"
-            android:layout_marginLeft="10dp"
-            android:drawablePadding="10dp"
+            app:layout_constraintTop_toTopOf="@id/battle_search"
+            app:layout_constraintTop_toBottomOf="@id/battle_search" />
+
+        <EditText
+            android:id="@+id/battle_search"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:lines="1"
+            android:background="@color/fill_background"
+            app:layout_constraintStart_toEndOf="@id/move_back"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/move_back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_back_24"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> view.moveBack()}"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/battle_search"/>
 
         <TextView
             android:id="@+id/battle_search_none"
@@ -49,6 +73,7 @@
             android:backgroundTint="@color/fill_blue"
             android:drawablePadding="15dp"
             android:drawableEnd="@drawable/ic_etc_sahre"
+            android:onClick="@{() -> view.shareChai()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/battle_search_none"
             app:layout_constraintEnd_toEndOf="parent"/>
