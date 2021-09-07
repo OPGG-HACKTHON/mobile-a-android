@@ -3,6 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="back">이전</string>
+
     <!-- home !-->
     <string name="home_setting_title">타이틀 설정</string>
     <string name="home_detail">자세히</string>
@@ -16,9 +18,13 @@
     <string name="rank_in_school">학교 정보</string>
 
     <string name="champion">챔피언</string>
-    <string name="rank_champion_choice_step1_des">2단계 필터 설정을 통해\n더 재미있는 랭킹을 확인 해보세요.</string>
-    <string name="rank_champion_choice_step2_des">챔피언을 1개 선택해주세요.</string>
+    <string name="data_choice">데이터 선택</string>
+    <string name="rank_champion_choice_des">2단계 필터 설정을 통해\n더 재미있는 랭킹을 확인 해보세요.</string>
+    <string name="rank_champion_choice_step1_des">챔피언을 1개 선택해주세요.</string>
+    <string name="rank_champion_choice_step2_des">궁금한 데이터를 1개 선택해주세요.</string>
     <string name="rank_champion_choice_submit">챔피언 선택완료</string>
+    <string name="rank_champion_choice_data_submit">데이터 선택완료</string>
+
 
     <!-- auth -->
     <string name="server_client_id">742823777512-r3petmmlnt08radg6uu8hhecubnutpov.apps.googleusercontent.com</string>

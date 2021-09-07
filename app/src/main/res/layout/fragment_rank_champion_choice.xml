@@ -33,13 +33,16 @@
             android:layout_height="wrap_content"/>
 
         <ImageView
+            android:src="@drawable/ic_close"
             android:layout_marginEnd="8dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/rank_champion_title"
             app:layout_constraintBottom_toBottomOf="@id/rank_champion_title"
             android:id="@+id/rank_champion_choice_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:onClick="@{(view) -> fragment.onClose(view)}"
+            android:layout_width="23.5dp"
+            android:layout_height="23.5dp"/>
+
 
         <TextView
             android:layout_marginTop="8dp"
@@ -47,7 +50,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/rank_champion_des"
-            android:text="@string/rank_champion_choice_step1_des"
+            android:text="@string/rank_champion_choice_des"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
@@ -61,60 +64,165 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:text="@string/champion"
-            android:layout_marginTop="8dp"
+
+
+        <ViewFlipper
+            android:id="@+id/rank_champion_step_flipper"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rank_champion_choice_progress"
-            android:id="@+id/rank_champion_step_title"
-            android:layout_width="0dp"
-            android:textSize="18sp"
-            android:textColor="@color/text_primary"
-            android:textFontWeight="400"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="@string/rank_champion_choice_step2_des"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rank_champion_step_title"
-            android:id="@+id/rank_champion_step_des"
-            android:textSize="14sp"
-            android:textColor="@color/text_primary"
-            android:textFontWeight="400"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/item_rank_champion"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
-            tools:itemCount="50"
-            app:adapter="@{adapter}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rank_champion_step_des"
-            app:layout_constraintBottom_toBottomOf="@id/rank_champion_submit"
-            app:items="@{vm.champions}"
-            android:id="@+id/rank_champion_list"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-
-        <Button
-            android:enabled="false"
-            android:text="@string/rank_champion_choice_submit"
-            android:textSize="16sp"
-            android:textFontWeight="400"
-            android:textColor="@color/white"
-            android:background="@drawable/bg_champion_choice_submit"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="28dp"
-            android:id="@+id/rank_champion_submit"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="0dp">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="@string/champion"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/rank_champion_step_1_title"
+                    android:layout_width="0dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_primary"
+                    android:textFontWeight="400"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:text="@string/rank_champion_choice_step1_des"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rank_champion_step_1_title"
+                    android:id="@+id/rank_champion_step_1_sub_des"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textFontWeight="400"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="40dp"
+                    tools:listitem="@layout/item_rank_champion"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:itemCount="50"
+                    app:adapter="@{adapter}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rank_champion_step_1_sub_des"
+                    app:layout_constraintBottom_toBottomOf="@id/rank_champion_step_1_submit"
+                    app:items="@{vm.champions}"
+                    android:id="@+id/rank_champion_list"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+
+                <Button
+                    android:enabled="false"
+                    android:text="@string/rank_champion_choice_submit"
+                    android:textSize="16sp"
+                    android:textFontWeight="400"
+                    android:onClick="@{(view) -> fragment.onChampionSubmit(view)}"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_champion_choice_submit"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="28dp"
+                    android:id="@+id/rank_champion_step_1_submit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="@string/data_choice"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/rank_champion_step_2_sub_title"
+                    android:layout_width="0dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_primary"
+                    android:textFontWeight="400"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:text="@string/rank_champion_choice_step2_des"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rank_champion_step_2_sub_title"
+                    android:id="@+id/rank_champion_step_2_sub_des"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textFontWeight="400"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+
+                <ScrollView
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rank_champion_step_2_sub_des"
+                    app:layout_constraintBottom_toBottomOf="@id/rank_champion_step_2_data_submit"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp">
+
+                    <com.opgg.chai.ui.main.rank.champion.RankChampionCompareCategoryView
+                        android:id="@+id/rank_champion_category_choice_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:flChildSpacing="8dp"
+                        app:flRowSpacing="8dp"/>
+
+                </ScrollView>
+
+                <Button
+                    android:id="@+id/rank_champion_choice_step_2_back"
+                    android:background="@drawable/bg_champion_choice_back"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="28dp"
+                    android:text="@string/back"
+                    android:onClick="@{(view) -> fragment.onBack(view)}"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textFontWeight="400"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:enabled="false"
+                    android:text="@string/rank_champion_choice_data_submit"
+                    android:textSize="16sp"
+                    android:textFontWeight="400"
+                    android:textColor="@color/white"
+                    android:onClick="@{(view) -> fragment.onDataSubmit(view)}"
+                    android:background="@drawable/bg_champion_choice_submit"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toRightOf="@id/rank_champion_choice_step_2_back"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="28dp"
+                    android:id="@+id/rank_champion_step_2_data_submit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ViewFlipper>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
