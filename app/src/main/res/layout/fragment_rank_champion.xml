@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="fragment"
+            type="com.opgg.chai.ui.main.rank.champion.RankChampionFragment" />
+        <variable
+            name="vm"
+            type="com.opgg.chai.ui.main.rank.champion.RankChampionViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.opgg.chai.ui.main.rank.adapters.RankAdapter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <TextView
+                android:text="갈리오 랭킹"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/text_primary"
+                android:textFontWeight="700"
+                android:layout_marginStart="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Space
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:onClick="@{(view) -> fragment.onCloseClick(view)}"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="355dp"
+                    app:contentScrim="@color/white"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="matrix"
+                        android:src="@drawable/image_champion_sample"
+                        app:layout_collapseMode="parallax" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <HorizontalScrollView
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/white"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed" >
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:id="@+id/rank_champion_category_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                    </RadioGroup>
+                </HorizontalScrollView>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                app:adapter="@{adapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/rank_champion_result_list"
+                tools:listitem="@layout/item_rank"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
+    </layout>

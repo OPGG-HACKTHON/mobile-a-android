@@ -98,5 +98,22 @@
     <fragment
         android:id="@+id/rankChampionChoiceFragment"
         android:label="RankChampionChoiceFragment"
-        android:name="com.opgg.chai.ui.main.rank.champion.RankChampionChoiceFragment"/>
+        android:name="com.opgg.chai.ui.main.rank.champion.RankChampionChoiceFragment">
+        <action
+            android:id="@+id/action_rankChampionChoiceFragment_to_rankChampionFragment"
+            app:destination="@id/rankChampionFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/rankChampionFragment"
+        android:label="RankChampionFragment"
+        android:name="com.opgg.chai.ui.main.rank.champion.RankChampionFragment">
+        <action
+            android:id="@+id/action_rankChampionFragment_to_rankFragment"
+            app:destination="@id/rankFragment"
+            app:popUpTo="@id/rankFragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
 </navigation>

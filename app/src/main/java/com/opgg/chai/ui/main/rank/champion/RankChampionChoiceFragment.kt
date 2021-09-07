@@ -58,7 +58,7 @@ class RankChampionChoiceFragment: Fragment() {
     }
     
     fun onClose(view: View) {
-        view.findNavController().popBackStack()
+        view.findNavController().navigateUp()
     }
 
     fun onChampionSubmit(view: View) {
@@ -70,7 +70,7 @@ class RankChampionChoiceFragment: Fragment() {
     }
 
     fun onDataSubmit(view: View) {
-
+        view.findNavController().navigate(R.id.action_rankChampionChoiceFragment_to_rankChampionFragment)
     }
 
     private fun moveStep1() {
