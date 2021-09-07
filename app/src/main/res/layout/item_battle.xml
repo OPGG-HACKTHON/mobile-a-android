@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+        <variable
+            name="item"
+            type="com.opgg.chai.model.data.battle.BattleUser" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/battle_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/round_rectangle"
             android:backgroundTint="@color/fill_contents"
             android:backgroundTintMode="src_atop">
@@ -30,6 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                image="@{item.lol.profileIconImageUrl}"
                 tools:src="@drawable/profile_sample" />
 
             <TextView
@@ -41,6 +46,7 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:text="@{item.lol.name}"
                 app:layout_constraintBottom_toTopOf="@id/battle_school"
                 app:layout_constraintLeft_toRightOf="@id/battle_profile_img"
                 app:layout_constraintRight_toLeftOf="@id/battle_recent_guide"

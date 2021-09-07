@@ -6,17 +6,19 @@
     <data>
         <variable
             name="view"
-            type="com.opgg.chai.ui.main.battle.BattleSearchFragment" />
+            type="com.opgg.chai.ui.main.battle.search.BattleSearchFragment" />
         <variable
             name="viewModel"
-            type="com.opgg.chai.ui.main.battle.BattleSearchViewModel" />
+            type="com.opgg.chai.ui.main.battle.search.BattleSearchViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E5E5E5"
-        tools:context=".ui.main.battle.BattleSearchFragment">
+        tools:context=".ui.main.battle.search.BattleSearchFragment">
 
         <View
             android:layout_width="match_parent"
@@ -29,7 +31,9 @@
             android:id="@+id/battle_search"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:lines="1"
+            android:maxLines="1"
+            android:text="@={viewModel.userName}"
+            android:inputType="text"
             android:background="@color/fill_background"
             app:layout_constraintStart_toEndOf="@id/move_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +63,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginStart="66dp"
             android:layout_marginEnd="66dp"
+            android:visibility="@{viewModel.battleUserList.size() > 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toBottomOf="@id/battle_search" />
 
         <Button
@@ -74,6 +79,7 @@
             android:drawablePadding="15dp"
             android:drawableEnd="@drawable/ic_etc_sahre"
             android:onClick="@{() -> view.shareChai()}"
+            android:visibility="@{viewModel.battleUserList.size() > 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/battle_search_none"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -85,10 +91,11 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
+            android:visibility="@{viewModel.battleUserList.size() > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/battle_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            addBattleUser="@{viewModel.battleUserList}"
             tools:listitem="@layout/item_battle"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

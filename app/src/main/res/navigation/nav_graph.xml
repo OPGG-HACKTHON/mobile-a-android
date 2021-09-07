@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/battleSearchFragment"
-        android:name="com.opgg.chai.ui.main.battle.BattleSearchFragment"
+        android:name="com.opgg.chai.ui.main.battle.search.BattleSearchFragment"
         android:label="BattleSearchFragment" >
         <action
             android:id="@+id/action_battleSearchFragment_to_battleResultFragment"

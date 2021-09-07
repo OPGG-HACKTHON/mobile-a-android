@@ -1,4 +1,4 @@
-package com.opgg.chai.ui.main.battle
+package com.opgg.chai.ui.main.battle.search
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -14,8 +14,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class BattleSearchFragment : BaseFragment<FragmentBattleSearchBinding, BattleSearchViewModel>() {
     @Inject
-    lateinit override var viewModel: BattleSearchViewModel
+    override lateinit var viewModel: BattleSearchViewModel
     override val layoutRes: Int = R.layout.fragment_battle_search
+    private val adapter = BattleSearchAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +31,7 @@ class BattleSearchFragment : BaseFragment<FragmentBattleSearchBinding, BattleSea
     fun initLayout() {
         binding.view = this
         binding.viewModel = viewModel
+        binding.battleSearchList.adapter = adapter
 
         catchEnterCode()
     }
@@ -37,8 +39,9 @@ class BattleSearchFragment : BaseFragment<FragmentBattleSearchBinding, BattleSea
     fun catchEnterCode() {
         binding.battleSearch.setOnKeyListener { v, keyCode, event ->
             if (keyCode.equals(KeyEvent.KEYCODE_ENTER)) {
-                viewModel.searchChaiMember(binding.battleSearch.text.toString())
-                binding.battleSearch.setText("")
+                viewModel.searchChaiMember()
+            } else if(keyCode.equals(KeyEvent.KEYCODE_BACK)) {
+                moveBack()
             }
 
             true

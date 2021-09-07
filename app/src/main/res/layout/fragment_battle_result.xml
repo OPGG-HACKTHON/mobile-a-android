@@ -4,7 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.opgg.chai.ui.main.battle.BattleResultViewModel" />
+        <variable
+            name="view"
+            type="com.opgg.chai.ui.main.battle.BattleResultFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,20 +25,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/battle_total_guide" />
 
-        <ImageButton
-            android:layout_width="17dp"
-            android:layout_height="17dp"
-            android:src="@drawable/ic_back_24"
-            android:background="@color/fill_background"
-            android:layout_marginTop="13dp"
-            android:layout_marginLeft="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/battle_total"
+            android:text="@{viewModel.resultTitle}"
             android:textSize="16sp"
             android:textColor="@color/text_primary"
             android:layout_marginTop="10dp"
@@ -41,6 +36,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_back_24"
+            android:background="@android:color/transparent"
+            android:onClick="@{view.moveBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/battle_total_guide"/>
 
         <View
             android:id="@+id/battle_total_guide"
@@ -218,7 +223,7 @@
             android:background="@drawable/round_rectangle"
             android:layout_marginTop="12dp"
             android:padding="8dp"
-            android:text="12sp"
+            android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@id/profile_1"
             app:layout_constraintStart_toStartOf="@id/profile_1"
             app:layout_constraintEnd_toEndOf="@id/profile_1"
@@ -233,7 +238,7 @@
             android:background="@drawable/round_rectangle"
             android:layout_marginTop="12dp"
             android:padding="8dp"
-            android:text="12sp"
+            android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@id/profile_2"
             app:layout_constraintStart_toStartOf="@id/profile_2"
             app:layout_constraintEnd_toEndOf="@id/profile_2"
@@ -330,6 +335,7 @@
             android:layout_height="wrap_content"
             android:text="@string/battle_for_real"
             android:textAlignment="center"
+            android:textColor="@color/fill_background"
             android:background="@drawable/round_rectangle_stroke_black"
             android:backgroundTint="@color/fill_blue"
             android:layout_marginTop="24dp"
