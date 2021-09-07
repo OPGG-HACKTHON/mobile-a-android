@@ -6,6 +6,7 @@
     <string name="back">이전</string>
 
     <!-- home !-->
+    <string name="home">홈</string>
     <string name="home_setting_title">타이틀 설정</string>
     <string name="home_detail">자세히</string>
     <string name="home_no_badge">타이틀을 설정해 보세요</string>
@@ -49,6 +50,7 @@
     </string-array>
 
     <!-- battle -->
+    <string name="battle">배틀</string>
     <string name="battle_search">배틀할 상대를 검색해주세요.</string>
     <string name="battle_recent">최근 대결상대</string>
     <string name="battle_recent_result">최근 전적</string>
@@ -58,5 +60,8 @@
     <string name="battle_character">캐릭터 배틀</string>
     <string name="battle_search_none">검색결과가 없습니다.\n친구를 차이에 초대해 주세요!</string>
     <string name="battle_search_share">차이 공유하기</string>
+
+    <!-- setting -->
+    <string name="setting">설정</string>
 
 </resources>
