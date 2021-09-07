@@ -9,7 +9,6 @@
         <variable
             name="vm"
             type="com.opgg.chai.ui.main.rank.champion.RankChampionViewModel" />
-
         <variable
             name="adapter"
             type="com.opgg.chai.ui.main.rank.adapters.RankAdapter" />
@@ -24,7 +23,7 @@
             android:background="@color/white"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
+            android:layout_height="80dp">
 
             <TextView
                 android:text="갈리오 랭킹"
