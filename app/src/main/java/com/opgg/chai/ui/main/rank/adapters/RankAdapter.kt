@@ -9,7 +9,7 @@ import com.opgg.chai.ui.main.rank.adapters.holders.RankViewHolder
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.ui.base.BaseViewHolder
 
-class RankAdapter(private val onItemClick: (View, RankItem) -> Unit?): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
+class RankAdapter(private val onItemClick: ((View, RankItem) -> Unit)? = null): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
 
     companion object {
         const val TYPE_RANK_HEADER = 1
@@ -33,7 +33,7 @@ class RankAdapter(private val onItemClick: (View, RankItem) -> Unit?): RecyclerV
             TYPE_RANK_HEADER -> RankHeaderViewHolder.newInstance(parent)
             TYPE_RANK -> RankViewHolder.newInstance(parent).apply {
                 itemClick = { view , i ->
-                    this@RankAdapter.onItemClick.invoke(view, items[i])
+                    this@RankAdapter.onItemClick?.invoke(view, items[i])
                 }
             }
             TYPE_RANK_BOTTOM -> RankBottomViewHolder.newInstance(parent)

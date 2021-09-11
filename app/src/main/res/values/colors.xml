@@ -36,4 +36,6 @@
     <color name="fill_point">#E9FF01</color>
     <color name="fill_ash">#EBF2FB</color>
     <color name="fill_pink">#FEE7ED</color>
+    
+    <color name="bluecontents">#E4EEFF</color>
 </resources>
