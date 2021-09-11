@@ -63,6 +63,7 @@
         </RadioGroup>
 
         <TextView
+            android:onClick="@{(view) -> fragment.onChampionRankClick(view)}"
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:text="@string/rank_champion"

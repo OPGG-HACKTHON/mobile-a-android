@@ -11,9 +11,11 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.opgg.chai.R
 import com.opgg.chai.model.remote.AuthService
+import com.opgg.chai.util.UserUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.http.Field
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
@@ -46,24 +48,20 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val result = authService.isOurUser("google", account.idToken)
-                    Log.d("login result", "${result?.message}")
-
-                    result?.let {
-                        movePage(R.id.action_loginFragment_to_homeFragment)
+                    val autData = HashMap<String, String>().apply {
+                        put("authFrom", "google")
+                        put("accesstoken", account.idToken!!)
                     }
+                    val result = authService.isOurUser(autData)
+                    result?.message?.let {
+                        if(it.contains("유저 정보가 없습니다. 회원가입을 진행합니다.")) movePage(R.id.action_loginFragment_to_joinTermsFragment)
+                        else getValidateUserInfo(result?.accessToken!!)
+                    }
+
+
                 } catch (e: Exception) {
                     Log.d("error", "${e.message}")
-                    e.localizedMessage?.let {
-                        if (it.contains("500")) {
-                            //todo: 추후 사용할 예정
-//                            googleClient.revokeAccess()
-                        } else {
-                            movePage(R.id.action_loginFragment_to_joinTermsFragment)
-                        }
-                        //todo: remove
-                        movePage(R.id.action_loginFragment_to_joinTermsFragment)
-                    }
+                    googleClient.revokeAccess()
                 }
             }
         }
@@ -72,6 +70,17 @@ class LoginViewModel @Inject constructor(
     private suspend fun movePage(action: Int) {
         withContext(Dispatchers.Main) {
             navController.navigate(action)
+        }
+    }
+
+    private suspend fun getValidateUserInfo(token: String) {
+
+        try {
+            UserUtils.userInfo = authService.getUserInfo(token)
+            Log.d("login", "user info:${UserUtils.userInfo?.email}")
+            movePage(R.id.action_loginFragment_to_homeFragment)
+        } catch (e: java.lang.Exception) {
+            Log.d("test error", "${e.localizedMessage}")
         }
     }
 }

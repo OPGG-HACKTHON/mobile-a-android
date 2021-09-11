@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+    </data>
+    <com.nex3z.flowlayout.FlowLayout
+        android:id="@+id/layout_compare_category"
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        app:flChildSpacing="8dp"
+        app:flRowSpacing="8dp"
+        android:layout_height="match_parent">
+
+
+    </com.nex3z.flowlayout.FlowLayout>
+</layout>

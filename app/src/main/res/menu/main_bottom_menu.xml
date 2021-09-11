@@ -3,19 +3,19 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:title="Home"
-        android:icon="@drawable/ic_home"/>
+        android:title="@string/home"
+        android:icon="@drawable/selector_ic_home"/>
     <item
         android:id="@+id/battleFragment"
-        android:title="Battle"
-        android:icon="@drawable/ic_battle"/>
+        android:title="@string/battle"
+        android:icon="@drawable/selector_ic_battle"/>
     <item
         android:id="@+id/rankFragment"
-        android:title="Ranking"
-        android:icon="@drawable/ic_ranking"/>
+        android:title="@string/rank"
+        android:icon="@drawable/selector_ic_rank"/>
     <item
         android:id="@+id/settingFragment"
-        android:title="Setting"
-        android:icon="@drawable/ic_setting"/>
+        android:title="@string/setting"
+        android:icon="@drawable/selector_ic_setting"/>
 
 </menu>

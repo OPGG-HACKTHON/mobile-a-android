@@ -40,6 +40,11 @@ class RankFragment : Fragment() {
         subscribeObserver()
     }
 
+    fun onChampionRankClick(view: View) {
+        view.findNavController().navigate(R.id.action_rankFragment_to_rankChampionFragment)
+    }
+
+
     private fun subscribeObserver() {
         with(vm) {
             rank.observe(viewLifecycleOwner) {
@@ -49,6 +54,6 @@ class RankFragment : Fragment() {
     }
 
     private val onRankItemClick = { view: View, rankItem: RankItem ->
-        view.findNavController().navigate(R.id.action_homeFragment_to_rankInSchoolFragment)
+        view.findNavController().navigate(R.id.action_rankFragment_to_rankInSchoolFragment)
     }
 }
