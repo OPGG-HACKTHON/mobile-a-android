@@ -7,15 +7,23 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentRankChampionBinding
+import com.opgg.chai.model.data.ChampionItem
+import com.opgg.chai.model.data.CompareCategoryItem
 import com.opgg.chai.ui.main.rank.adapters.RankAdapter
-import com.opgg.chai.util.DisplayUtil
+import com.opgg.chai.ui.main.rank.adapters.RankCompareChampionAdapter
+import com.opgg.chai.ui.main.rank.adapters.decorator.VerticalSpaceItemDecoration
+import com.opgg.chai.util.extension.loadImage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RankChampionFragment: Fragment() {
 
     private val vm: RankChampionViewModel by viewModels()
@@ -36,12 +44,31 @@ class RankChampionFragment: Fragment() {
         with(binding) {
             fragment = this@RankChampionFragment
             vm = this.vm
-            adapter = RankAdapter()
+            adapter = RankCompareChampionAdapter()
+            rankChampionResultList.addItemDecoration(VerticalSpaceItemDecoration(resources.getDimensionPixelSize(R.dimen._8dp)))
+        }
+        val choseChampion = arguments?.getParcelable<ChampionItem>("champion")
+
+        vm.choseChampion = choseChampion
+
+        choseChampion?.let {
+            binding.rankChampionName.text = "${it.name} 랭킹"
+            binding.rankChampionImage.loadImage(it.image)
         }
         subscribeObserver()
-
         vm.loadCompareCategories()
         vm.loadRanks()
+
+        binding.rankChampionCategoryGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
+            if(radioGroup.findViewById<RadioButton>(checkedId) != null) {
+                val button = radioGroup.findViewById<RadioButton>(checkedId)
+                if(button.tag != null && button.tag is CompareCategoryItem) {
+                   vm.choseCompareCategory = button.tag as CompareCategoryItem
+                }
+            }
+        }
+
+
     }
 
     private fun subscribeObserver() {
@@ -52,6 +79,7 @@ class RankChampionFragment: Fragment() {
             it.forEach {
                 val item = RadioButton(requireContext()).apply {
                     text = it.name
+                    tag = it
                     setTextColor(ContextCompat.getColorStateList(requireContext(), R.color.selector_compare_category_tab))
                     setBackgroundResource(R.drawable.bg_compare_category_tab)
                     buttonDrawable = null
@@ -64,10 +92,23 @@ class RankChampionFragment: Fragment() {
                 }
                 binding.rankChampionCategoryGroup.addView(item)
             }
+
+            for(children in binding.rankChampionCategoryGroup.children) {
+                if(children is RadioButton) {
+                    if(children.text == arguments?.getParcelable<CompareCategoryItem>("compareCategory")?.name) {
+                        children.isChecked = true
+                        break
+                    }
+                }
+            }
         }
 
         vm.rankItem.observe(viewLifecycleOwner) {
-            binding.adapter?.submitList("", it)
+            binding.adapter?.submitList(it)
+        }
+
+        vm.progress.observe(viewLifecycleOwner) {
+            binding.progress.visibility = if(it) View.VISIBLE else View.GONE
         }
     }
 

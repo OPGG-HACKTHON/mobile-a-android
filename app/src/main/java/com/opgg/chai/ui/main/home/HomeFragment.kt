@@ -26,11 +26,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
         }
-        performAction()
-        return view
-    }
 
-    private fun performAction() {
-        viewModel.loadRank()
+        viewModel.myProfile.observe(viewLifecycleOwner) {
+            binding.homeProfileSummonerLevel.visibility = if(it.summonerLevel.isEmpty()) View.INVISIBLE else View.VISIBLE
+        }
+
+        return view
     }
 }

@@ -9,23 +9,25 @@ import com.opgg.chai.util.DisplayUtil
 
 
 fun ImageView.loadImage(url: String) {
-    // todo : sample 이미지 변경
     Glide.with(this)
         .load(url)
         .override(this.width, this.height)
-        .placeholder(R.drawable.profile_sample)
-        .error(R.drawable.profile_sample)
+        .into(this)
+}
+
+fun ImageView.loadImage(imageResource: Int) {
+    Glide.with(this)
+        .load(imageResource)
+        .override(this.width, this.height)
         .into(this)
 }
 
 
+
 fun ImageView.loadRoundedCornerImage(url: String) {
-    // todo : sample 이미지 변경
     Glide.with(this)
         .load(url)
         .override(this.width, this.height)
-        .placeholder(R.drawable.profile_sample)
-        .error(R.drawable.profile_sample)
-        .apply(RequestOptions().transform(RoundedCorners(DisplayUtil.convertDpToPixel(this.context, 14.toFloat()).toInt())))
+        .apply(RequestOptions().transform(RoundedCorners(resources.getDimensionPixelSize(R.dimen._16dp))))
         .into(this)
 }

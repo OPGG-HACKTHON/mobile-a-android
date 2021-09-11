@@ -6,6 +6,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Lol(
+    @Json(name = "name") val name: String,
     @Json(name = "profileIconId") val profileIconId: Int,
     @Json(name = "profileIconImageUrl") val profileIconImageUrl: String,
     @Json(name = "summonerLevel") val summonerLevel: Int,

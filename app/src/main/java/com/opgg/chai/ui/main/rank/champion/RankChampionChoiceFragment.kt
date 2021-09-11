@@ -5,15 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentRankChampionChoiceBinding
 import com.opgg.chai.databinding.ItemCompareCategoryBinding
 import com.opgg.chai.ui.main.rank.adapters.RankChampionAdapter
+import com.opgg.chai.util.observeEvent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RankChampionChoiceFragment: Fragment() {
 
     private val vm: RankChampionChoiceViewModel by viewModels()
@@ -32,13 +37,14 @@ class RankChampionChoiceFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             fragment = this@RankChampionChoiceFragment
-            vm = this.vm
+            vm = this@RankChampionChoiceFragment.vm
             adapter = RankChampionAdapter {
-                rankChampionStep1Submit.isEnabled = it
+                vm?.choseChampion = it
+                rankChampionStep1Submit.isEnabled = it != null
             }
         }
         subscribeObserver()
-        vm.loadChampions() // todo dummy data 제거 예정
+        vm.loadChampions()
         vm.loadCompareCategories()
     }
 
@@ -50,13 +56,20 @@ class RankChampionChoiceFragment: Fragment() {
         vm.compareCategories.observe(viewLifecycleOwner) {
             it?.let { compareCategories ->
                 binding.rankChampionCategoryChoiceLayout.setData(compareCategories)
-                binding.rankChampionCategoryChoiceLayout.setListener {  isChecked ->
-                    binding.rankChampionStep2DataSubmit.isEnabled = isChecked
+                binding.rankChampionCategoryChoiceLayout.setListener {  choseCompareCategoryItem ->
+                    binding.rankChampionStep2DataSubmit.isEnabled = choseCompareCategoryItem != null
+                    vm.choseCompareCategory = choseCompareCategoryItem
                 }
             }
         }
+
+        vm.showResultFragmentEvent.observeEvent(viewLifecycleOwner) {
+            findNavController().navigate(R.id.action_rankChampionChoiceFragment_to_rankChampionFragment,
+                bundleOf("champion" to vm.choseChampion, "compareCategory" to vm.choseCompareCategory)
+            )
+        }
     }
-    
+
     fun onClose(view: View) {
         view.findNavController().navigateUp()
     }
@@ -70,7 +83,7 @@ class RankChampionChoiceFragment: Fragment() {
     }
 
     fun onDataSubmit(view: View) {
-        view.findNavController().navigate(R.id.action_rankChampionChoiceFragment_to_rankChampionFragment)
+        vm.showChampionResultEvent()
     }
 
     private fun moveStep1() {

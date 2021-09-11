@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -13,7 +14,6 @@ import com.opgg.chai.ui.main.rank.adapters.RankAdapter
 import com.opgg.chai.databinding.FragmentRankBinding
 import com.opgg.chai.model.data.RankItem
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 @AndroidEntryPoint
 class RankFragment : Fragment() {
@@ -35,25 +35,36 @@ class RankFragment : Fragment() {
         with(binding) {
             fragment = this@RankFragment
             vm = this@RankFragment.vm
-            adapter = RankAdapter(onRankItemClick)
+            adapter = RankAdapter().apply {
+                setListener(onRankItemClick)
+            }
         }
         subscribeObserver()
     }
 
     fun onChampionRankClick(view: View) {
-        view.findNavController().navigate(R.id.action_rankFragment_to_rankChampionFragment)
+        view.findNavController().navigate(R.id.action_rankFragment_to_rankChampionChoiceFragment)
     }
 
 
     private fun subscribeObserver() {
         with(vm) {
             rank.observe(viewLifecycleOwner) {
-                binding.adapter?.submitList("서울고에서 나의 랭킹", it)
+                binding.adapter?.submitList("", it)
+            }
+
+            progress.observe(viewLifecycleOwner) {
+                binding.progress.visibility = if(it) View.VISIBLE else View.GONE
             }
         }
     }
 
     private val onRankItemClick = { view: View, rankItem: RankItem ->
-        view.findNavController().navigate(R.id.action_rankFragment_to_rankInSchoolFragment)
+        if(vm.viewType != 0) {
+            view.findNavController().navigate(
+                R.id.action_rankFragment_to_rankInSchoolFragment,
+                bundleOf("rankItem" to rankItem)
+            )
+        }
     }
 }

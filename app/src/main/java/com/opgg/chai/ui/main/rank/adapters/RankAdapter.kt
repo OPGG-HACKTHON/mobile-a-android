@@ -9,7 +9,7 @@ import com.opgg.chai.ui.main.rank.adapters.holders.RankViewHolder
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.ui.base.BaseViewHolder
 
-class RankAdapter(private val onItemClick: ((View, RankItem) -> Unit)? = null): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
+class RankAdapter(): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
 
     companion object {
         const val TYPE_RANK_HEADER = 1
@@ -19,12 +19,22 @@ class RankAdapter(private val onItemClick: ((View, RankItem) -> Unit)? = null): 
 
     var items: MutableList<RankItem> = mutableListOf()
     private var title: String = ""
+    private var onItemClick: ((View, RankItem) -> Unit)? = null
+
+    fun setListener(listener: ((View, RankItem) -> Unit)?) {
+        this.onItemClick = listener
+    }
 
     fun submitList(title: String, items: List<RankItem>) {
         this.items = items.toMutableList()
         this.title = title
         this.items.add(0, RankItem())
         this.items.add(this.items.size, RankItem())
+        notifyDataSetChanged()
+    }
+
+    fun submitNotHeaderFooterList(items: List<RankItem>) {
+        this.items = items.toMutableList()
         notifyDataSetChanged()
     }
 

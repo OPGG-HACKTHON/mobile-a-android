@@ -3,6 +3,7 @@ package com.opgg.chai.ui.main.rank
 import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.opgg.chai.model.data.RankItem
@@ -25,36 +26,50 @@ class RankViewModel @ViewModelInject constructor(
             }
         }
 
+
     private var _rank = MutableLiveData<List<RankItem>>()
-    val rank: MutableLiveData<List<RankItem>>
+    val rank: LiveData<List<RankItem>>
         get() = _rank
+
+    private var _progress = MutableLiveData(false)
+    val progress: LiveData<Boolean>
+        get() = _progress
 
     init {
         viewType = 0
     }
 
     private fun loadSchoolRank() = viewModelScope.launch {
-        // todo 학교랭킹 API 추가시 구현
-        _rank.value = emptyList()
+        UserUtils.userInfo?.let { userInfo ->
+            _progress.value = true
+            val response = apiService.getSchoolRanks("1")
+            val myRankResponse = apiService.getSchoolRankBySchoolId("1", userInfo.schoolId)
+
+            val items = response
+                .map { rankInSchoolData ->
+                rankInSchoolData.parserRankItem()
+            }.toMutableList()
+            items.add(0, myRankResponse.parserRankItem(me = true))
+            _rank.value = items
+            _progress.value = false
+        }
     }
 
     private fun loadRankInSchool() = viewModelScope.launch {
-        UserUtils.userInfo?.let {
-            val response = apiService.getRanksInSchool(it.schoolId)
+        UserUtils.userInfo?.let { userInfo ->
+            _progress.value = true
+            val response = apiService.getRanksInSchool(userInfo.schoolId)
+            val myRankResponse = apiService.getRankByUserId(userInfo.schoolId, userInfo.id)
 
-            val items = response.map { rankInSchoolData ->
+            val items = response
+                .filter { it.id != userInfo.id }
+                .map { rankInSchoolData ->
                 rankInSchoolData.parserRankItem()
-            }.toList()
-
+            }.toMutableList()
+            items.add(0, myRankResponse.parserRankItem(me = true))
             _rank.value = items
+            _progress.value = false
         }
-//        val response = apiService.getRanksInSchool("B000011965")
-//
-//        val items = response.map { rankInSchoolData ->
-//            rankInSchoolData.parserRankItem()
-//        }.toList()
-//
-//        _rank.value = items
     }
 
 
