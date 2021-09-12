@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.opgg.chai.model.data.ChampionItem
 import com.opgg.chai.model.data.auth.SchoolInfo
 import com.opgg.chai.model.data.title.TitleHistoryItem
+import com.opgg.chai.model.data.title.TitleItem
 import com.opgg.chai.ui.auth.join.search.JoinSearchAdapter
 import com.opgg.chai.ui.main.rank.adapters.RankChampionAdapter
 import com.opgg.chai.ui.main.setting.TitleHistoryAdapter
+import com.opgg.chai.ui.main.setting.TitleItemAdapter
 
 @BindingAdapter("adapter")
 fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
@@ -37,3 +39,12 @@ fun addHistory(view: RecyclerView, titleHistory: List<TitleHistoryItem>?) {
         adapter.addItems(it)
     }
 }
+
+@BindingAdapter("addTitleList")
+fun addTitle(view: RecyclerView, titleHistory: List<TitleItem>?) {
+    titleHistory?.let {
+        val adapter = view.adapter as TitleItemAdapter
+        adapter.addItems(it)
+    }
+}
+

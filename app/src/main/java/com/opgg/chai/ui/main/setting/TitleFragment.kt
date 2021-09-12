@@ -1,10 +1,12 @@
 package com.opgg.chai.ui.main.setting
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentTitleBinding
 import com.opgg.chai.ui.base.BaseFragment
@@ -16,6 +18,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     @Inject override lateinit var viewModel: TitleViewModel
     override val layoutRes: Int = R.layout.fragment_title
     private val historyAdapter: TitleHistoryAdapter = TitleHistoryAdapter()
+    private val titleAdapter = TitleItemAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,5 +38,10 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
 
     fun initLayout() {
         binding.titleHistoryList.adapter = historyAdapter
+        binding.titleList.adapter = titleAdapter
+        binding.titleList.layoutManager = FlexboxLayoutManager(requireContext()).apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+        }
     }
 }
