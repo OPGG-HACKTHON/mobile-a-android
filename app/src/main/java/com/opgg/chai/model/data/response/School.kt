@@ -8,19 +8,19 @@ import java.text.NumberFormat
 @JsonClass(generateAdapter = true)
 data class School (
     @Json(name = "rankNo")
-    val rankNo: Int,
+    val rankNo: Int?,
     @Json(name = "rankChangedStatus")
-    val rankChangedStatus: String,
+    val rankChangedStatus: String?,
     @Json(name = "point")
-    val point: Int,
+    val point: Int?,
     @Json(name = "id")
-    val id: Int,
+    val id: String,
     @Json(name = "name")
     val name: String,
     @Json(name = "division")
     val division: String,
     @Json(name = "region")
-    val region: String,
+    val region: String?,
     @Json(name = "address")
     val address: String,
     @Json(name = "createdAt")
@@ -31,10 +31,10 @@ data class School (
 
     fun parserRankItem(me: Boolean = false): RankItem {
         return RankItem(
-            id = id,
+            id = 0,
             name = name,
             score = "통합점수 ${NumberFormat.getInstance().format(point)} LP",
-            isRankUp = rankChangedStatus,
+            isRankUp = rankChangedStatus ?: "NEW",
             rank = rankNo.toString(),
             me = me)
     }

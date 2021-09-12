@@ -50,7 +50,7 @@ class RankFragment : Fragment() {
     private fun subscribeObserver() {
         with(vm) {
             rank.observe(viewLifecycleOwner) {
-                binding.adapter?.submitList("", it)
+                binding.adapter?.submitList(it)
             }
 
             progress.observe(viewLifecycleOwner) {

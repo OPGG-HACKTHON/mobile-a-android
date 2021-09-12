@@ -50,6 +50,8 @@ class RankViewModel @ViewModelInject constructor(
                 rankInSchoolData.parserRankItem()
             }.toMutableList()
             items.add(0, myRankResponse.parserRankItem(me = true))
+            items.add(0, RankItem(viewType = "HEADER", title = "랭킹"))
+            items.add(items.size, RankItem(viewType = "FOOTER"))
             _rank.value = items
             _progress.value = false
         }
@@ -67,6 +69,8 @@ class RankViewModel @ViewModelInject constructor(
                 rankInSchoolData.parserRankItem()
             }.toMutableList()
             items.add(0, myRankResponse.parserRankItem(me = true))
+            items.add(0, RankItem(viewType = "HEADER", title = "랭킹"))
+            items.add(items.size, RankItem(viewType = "FOOTER"))
             _rank.value = items
             _progress.value = false
         }

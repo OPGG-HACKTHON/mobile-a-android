@@ -57,11 +57,15 @@ class RankInSchoolFragment: Fragment()   {
 
     private fun subscribeObserver() {
         vm.ranks.observe(viewLifecycleOwner) {
-            binding.adapter?.submitList("", it)
+            binding.adapter?.submitList(it)
         }
 
         vm.progress.observe(viewLifecycleOwner) {
             binding.progress.visibility = if(it) View.VISIBLE else View.GONE
+        }
+
+        vm.title.observe(viewLifecycleOwner) {
+//            binding.adapter?.setHeaderMessage(it)
         }
     }
 

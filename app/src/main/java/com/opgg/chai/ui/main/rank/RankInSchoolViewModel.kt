@@ -26,16 +26,25 @@ class RankInSchoolViewModel @ViewModelInject constructor(
     val progress: LiveData<Boolean>
         get() = _progress
 
+    private var _title = MutableLiveData("")
+    val title: LiveData<String>
+        get() = _title
 
     fun loadRank() = viewModelScope.launch {
         school?.let {
             _progress.value = true
             val response = apiService.getRanksInSchool(it.id.toString())
+//            val school = apiService.getSchoolBy(it.id.toString())
+            val school = apiService.getSchoolBy("B000011965") // todo Test
             val items = response
                 .map { rankInSchoolData ->
                     rankInSchoolData.parserRankItem()
-                }.toList()
+                }.toMutableList()
+
+            items.add(0, RankItem(viewType = "HEADER", title = "${school.name} 랭킹 TOP 10"))
+            items.add(items.size, RankItem(viewType = "FOOTER"))
             _ranks.value = items
+//            _title.value = "${school.name} 랭킹 TOP 10"
             _progress.value = false
         }
     }

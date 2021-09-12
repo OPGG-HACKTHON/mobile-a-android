@@ -59,6 +59,9 @@ interface ApiService {
     suspend fun getProfileBy(
         @Path("id") userId: String): RankInSchoolData
 
-
+    // ** 학교 id로 검색 ** /
+    @GET("schools/{id}")
+    suspend fun getSchoolBy(
+        @Path("id") schoolId: String): School
 
 }

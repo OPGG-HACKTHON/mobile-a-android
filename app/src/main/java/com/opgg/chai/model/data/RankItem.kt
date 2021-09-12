@@ -13,7 +13,9 @@ data class RankItem(val id: Int = 0,
                     val isRankUp: String = "NEW",
                     val summonerLevel: String = "0",
                     val rank: String = "",
-                    val me: Boolean = false): Parcelable {
+                    val me: Boolean = false,
+                    val title: String = "",
+val viewType: String = "BODY"): Parcelable {
 
     fun getRankArrowImage(): Int {
         return when(isRankUp) {
