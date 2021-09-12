@@ -1,11 +1,8 @@
 package com.opgg.chai.util
 
-import com.opgg.chai.model.data.auth.UserInfo
+import com.opgg.chai.model.data.auth.User
 
 object UserUtils {
-    var userInfo: UserInfo? = null
-
-
     // dummy
 //    init {
 //        userInfo = UserInfo(
@@ -18,4 +15,7 @@ object UserUtils {
 //            updatedAt = ""
 //        )
 //    }
+
+    var userInfo: User? = null
+    var userEmail: String? = null
 }

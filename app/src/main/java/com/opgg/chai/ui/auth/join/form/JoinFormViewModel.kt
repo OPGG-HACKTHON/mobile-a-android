@@ -8,13 +8,12 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.opgg.chai.R
-import com.opgg.chai.model.data.auth.UserInfo
+import com.opgg.chai.model.data.auth.User
 import com.opgg.chai.model.remote.AuthService
 import com.opgg.chai.util.UserUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class JoinFormViewModel constructor(context: Context, private val authService: AuthService) :
     ViewModel() {
@@ -61,9 +60,10 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
                         put("schoolId", schoolId!!)
                         put("accesstoken", accessToken)
                     }
-                    val user: UserInfo? = authService.signupUser(authData)
+                    val user: User? = authService.signupUser(authData)
 
                     UserUtils.userInfo = user
+                    UserUtils.userEmail = _emailAddress.value
                     moveHome()
 
                 } catch (e: Exception) {
@@ -74,6 +74,8 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
     }
 
     suspend fun moveHome() {
-        navController.navigate(R.id.action_joinFormFragment_to_homeFragment)
+        withContext(Dispatchers.Main) {
+            navController.navigate(R.id.action_joinFormFragment_to_homeFragment)
+        }
     }
 }
