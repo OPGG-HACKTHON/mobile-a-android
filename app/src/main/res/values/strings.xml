@@ -75,5 +75,9 @@
 
     <!-- setting -->
     <string name="setting">설정</string>
+    <string name="login_info">로그인 정보</string>
+    <string name="manage_title">타이틀 관리</string>
+    <string name="logout">로그아웃</string>
+    <string name="leave">탈퇴</string>
 
 </resources>

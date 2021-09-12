@@ -77,7 +77,7 @@ class LoginViewModel @Inject constructor(
         try {
             UserUtils.userInfo = authService.getUserInfo(token)
             UserUtils.userEmail = email
-            Log.d("login", "user info:${UserUtils.userInfo?.lol?.name}")
+            Log.d("login", "user info:${email}")
             movePage(R.id.action_loginFragment_to_homeFragment)
         } catch (e: java.lang.Exception) {
             Log.d("test error", "${e.localizedMessage}")
