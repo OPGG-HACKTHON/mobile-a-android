@@ -7,15 +7,15 @@ object UserUtils {
 
 
     // dummy
-    init {
-        userInfo = UserInfo(
-            createdAt = "today",
-            email = "alstjqaos@gmail.com",
-            id = 3,
-            lOLAccountId = "강자석",
-            role = "Jungle",
-            schoolId = "B000011965",
-            updatedAt = ""
-        )
-    }
+//    init {
+//        userInfo = UserInfo(
+//            createdAt = "today",
+//            email = "alstjqaos@gmail.com",
+//            id = 3,
+//            lOLAccountId = "강자석",
+//            role = "Jungle",
+//            schoolId = "B000011965",
+//            updatedAt = ""
+//        )
+//    }
 }
