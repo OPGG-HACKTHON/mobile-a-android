@@ -13,8 +13,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentRankChampionChoiceBinding
-import com.opgg.chai.databinding.ItemCompareCategoryBinding
 import com.opgg.chai.ui.main.rank.adapters.RankChampionAdapter
+import com.opgg.chai.ui.main.rank.adapters.decoration.ChampionChoiceDecoration
+import com.opgg.chai.util.extension.dp
 import com.opgg.chai.util.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,9 +39,29 @@ class RankChampionChoiceFragment: Fragment() {
         with(binding) {
             fragment = this@RankChampionChoiceFragment
             vm = this@RankChampionChoiceFragment.vm
-            adapter = RankChampionAdapter {
-                vm?.choseChampion = it
-                rankChampionStep1Submit.isEnabled = it != null
+            adapter = RankChampionAdapter()
+//            binding.rankChampionList.addItemDecoration(ChampionChoiceDecoration(spacing = 4.dp, spanCount = 3))
+            binding.rankChampionList.setOnItemClickListener { position ->
+                if(position != -1) {
+                    val adapter = binding.rankChampionList.adapter as RankChampionAdapter
+                    val clickedItem = adapter.items[position]
+
+                    if(this@RankChampionChoiceFragment.vm.choseChampion != null && this@RankChampionChoiceFragment.vm.choseChampion != clickedItem) {
+                        this@RankChampionChoiceFragment.vm.choseChampion?.isChecked = false
+                        adapter.notifyItemChanged(adapter.items.indexOf(this@RankChampionChoiceFragment.vm.choseChampion))
+                    }
+                    if (clickedItem.isChecked) {
+                        clickedItem.isChecked = false
+                        this@RankChampionChoiceFragment.vm.choseChampion = null
+                    } else {
+                        clickedItem.isChecked = true
+                        this@RankChampionChoiceFragment.vm.choseChampion = clickedItem
+                    }
+                    rankChampionStep1Submit.isEnabled =
+                        this@RankChampionChoiceFragment.vm.choseChampion != null
+                    adapter.notifyItemChanged(position)
+
+                }
             }
         }
         subscribeObserver()
@@ -50,6 +71,7 @@ class RankChampionChoiceFragment: Fragment() {
 
     private fun subscribeObserver() {
         vm.champions.observe(viewLifecycleOwner) {
+            binding.rankChampionList.setKeywordList(ArrayList(it.map { it.name }.toList()))
             binding.adapter?.submitList(it)
         }
 

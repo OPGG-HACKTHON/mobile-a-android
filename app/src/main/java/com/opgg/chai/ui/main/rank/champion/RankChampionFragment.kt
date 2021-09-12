@@ -12,14 +12,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.opgg.chai.R
 import com.opgg.chai.databinding.FragmentRankChampionBinding
 import com.opgg.chai.model.data.ChampionItem
 import com.opgg.chai.model.data.CompareCategoryItem
-import com.opgg.chai.ui.main.rank.adapters.RankAdapter
 import com.opgg.chai.ui.main.rank.adapters.RankCompareChampionAdapter
-import com.opgg.chai.ui.main.rank.adapters.decorator.VerticalSpaceItemDecoration
+import com.opgg.chai.ui.main.rank.adapters.decoration.VerticalSpaceItemDecoration
 import com.opgg.chai.util.extension.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 

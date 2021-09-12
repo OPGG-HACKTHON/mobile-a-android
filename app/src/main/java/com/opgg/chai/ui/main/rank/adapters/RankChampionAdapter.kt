@@ -3,47 +3,27 @@ package com.opgg.chai.ui.main.rank.adapters
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.github.windsekirun.koreanindexer.KoreanIndexerRecyclerView
 import com.opgg.chai.model.data.ChampionItem
 import com.opgg.chai.ui.main.rank.adapters.holders.RankChampionViewHolder
+import okhttp3.internal.notify
 
-class RankChampionAdapter(private val onSelectedChangeListener: (ChampionItem?) -> Unit):
-    ListAdapter<ChampionItem, RankChampionViewHolder>(diffUtil) {
+class RankChampionAdapter:
+    KoreanIndexerRecyclerView.KoreanIndexerRecyclerAdapter<RankChampionViewHolder>() {
 
-    companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<ChampionItem>() {
-            override fun areContentsTheSame(oldItem: ChampionItem, newItem: ChampionItem) =
-                oldItem == newItem
+    var items = listOf<ChampionItem>()
 
-            override fun areItemsTheSame(oldItem: ChampionItem, newItem: ChampionItem) =
-                oldItem.id == newItem.id
-        }
+    fun submitList(items: List<ChampionItem>) {
+        this.items = items
+        notifyDataSetChanged()
     }
-
-    private var checkedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankChampionViewHolder
-            = RankChampionViewHolder.newInstance(parent).apply {
-        itemClick = { view, i ->
-            notifyItemChanged(i)
-            checkedPosition = if(!getItem(i).isChecked) {
-                -1
-            } else {
-                if(checkedPosition != -1) {
-                    getItem(checkedPosition).isChecked = false
-                }
-                notifyItemChanged(checkedPosition)
-                i
-            }
-            val choseItem = if(checkedPosition != -1) {
-                getItem(checkedPosition)
-            } else {
-                null
-            }
-            onSelectedChangeListener.invoke(choseItem)
-        }
-    }
+            = RankChampionViewHolder.newInstance(parent)
 
     override fun onBindViewHolder(holder: RankChampionViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.onBind(items[position])
     }
+
+    override fun getItemCount() = items.size
 }
