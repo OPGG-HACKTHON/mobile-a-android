@@ -190,7 +190,8 @@
                     app:layout_constraintStart_toStartOf="@id/history_background"
                     app:layout_constraintTop_toBottomOf="@id/title_header3"
                     app:layout_constraintBottom_toBottomOf="@id/history_background"
-                    tools:listitem="@layout/item_title_history"/>
+                    tools:listitem="@layout/item_title_history"
+                    addHistory="@{viewmodel.titleHistory}"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

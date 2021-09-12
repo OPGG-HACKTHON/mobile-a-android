@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="item"
+            type="com.opgg.chai.model.data.title.TitleItem" />
     </data>
 
     <LinearLayout
