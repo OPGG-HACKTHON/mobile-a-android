@@ -6,6 +6,8 @@ import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
 import com.opgg.chai.R
 import com.opgg.chai.databinding.ActivityMainBinding
 import com.opgg.chai.ui.base.BaseActivity
@@ -44,4 +46,5 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
 
     }
+
 }
