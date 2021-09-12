@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.opgg.chai.model.data.ChampionItem
 import com.opgg.chai.ui.main.rank.adapters.holders.RankChampionViewHolder
 
-class RankChampionAdapter(private val onSelectedChangeListener: (Boolean) -> Unit): ListAdapter<ChampionItem, RankChampionViewHolder>(diffUtil) {
+class RankChampionAdapter(private val onSelectedChangeListener: (ChampionItem?) -> Unit):
+    ListAdapter<ChampionItem, RankChampionViewHolder>(diffUtil) {
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<ChampionItem>() {
@@ -33,7 +34,12 @@ class RankChampionAdapter(private val onSelectedChangeListener: (Boolean) -> Uni
                 notifyItemChanged(checkedPosition)
                 i
             }
-            onSelectedChangeListener.invoke(checkedPosition != -1)
+            val choseItem = if(checkedPosition != -1) {
+                getItem(checkedPosition)
+            } else {
+                null
+            }
+            onSelectedChangeListener.invoke(choseItem)
         }
     }
 

@@ -9,7 +9,7 @@ import com.opgg.chai.ui.main.rank.adapters.holders.RankViewHolder
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.ui.base.BaseViewHolder
 
-class RankAdapter(private val onItemClick: ((View, RankItem) -> Unit)? = null): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
+class RankAdapter(): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
 
     companion object {
         const val TYPE_RANK_HEADER = 1
@@ -19,14 +19,17 @@ class RankAdapter(private val onItemClick: ((View, RankItem) -> Unit)? = null): 
 
     var items: MutableList<RankItem> = mutableListOf()
     private var title: String = ""
+    private var onItemClick: ((View, RankItem) -> Unit)? = null
 
-    fun submitList(title: String, items: List<RankItem>) {
+    fun setListener(listener: ((View, RankItem) -> Unit)?) {
+        this.onItemClick = listener
+    }
+
+    fun submitList(items: List<RankItem>) {
         this.items = items.toMutableList()
-        this.title = title
-        this.items.add(0, RankItem())
-        this.items.add(this.items.size, RankItem())
         notifyDataSetChanged()
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*, *> {
         return when(viewType) {
@@ -47,7 +50,7 @@ class RankAdapter(private val onItemClick: ((View, RankItem) -> Unit)? = null): 
                 holder.onBind(items[position])
             }
             is RankHeaderViewHolder -> {
-                holder.onBind(title)
+                holder.onBind(items[position].title)
             }
             is RankBottomViewHolder -> {}
         }
@@ -56,11 +59,11 @@ class RankAdapter(private val onItemClick: ((View, RankItem) -> Unit)? = null): 
     override fun getItemCount() = items.size
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> {
+        return when (items[position].viewType) {
+            "HEADER" -> {
                 TYPE_RANK_HEADER
             }
-            items.size-1 -> {
+            "FOOTER" -> {
                 TYPE_RANK_BOTTOM
             }
             else -> {

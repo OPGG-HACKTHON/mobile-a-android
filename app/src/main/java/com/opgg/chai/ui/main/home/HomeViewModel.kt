@@ -5,10 +5,17 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.opgg.chai.model.data.RankItem
+import com.opgg.chai.model.remote.ApiService
+import com.opgg.chai.util.UserUtils
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(application: Application): AndroidViewModel(application) {
+class HomeViewModel @Inject constructor(
+    private val apiService: ApiService,
+    application: Application
+): AndroidViewModel(application) {
 
     private var _rankInSchool = MutableLiveData<RankItem>()
     val rankInSchool: LiveData<RankItem>
@@ -18,13 +25,36 @@ class HomeViewModel @Inject constructor(application: Application): AndroidViewMo
     val schoolRankInRegion: LiveData<RankItem>
         get() = _schoolRankInRegion
 
+    private var _myProfile = MutableLiveData<RankItem>()
+    val myProfile: LiveData<RankItem>
+        get() = _myProfile
 
-    fun loadRank() {
-        _rankInSchool.value = RankItem(id = 0, name = "쪼렙이다말로하자", score = "Challenger 1,724 LP", isRankUp = true, rank = "23")
-        _schoolRankInRegion.value = RankItem(id = 0, name = "서울고등학교", score = "통합점수 1,724 LP", isRankUp = false, rank = "7")
+    init {
+        loadMyProfile()
+        loadRankInSchool()
+        loadSchoolRankInRegion()
     }
 
 
+    fun loadMyProfile() = viewModelScope.launch {
+        UserUtils.userInfo?.let {
+            val response = apiService.getProfileBy(it.id.toString())
 
+            _myProfile.value = response.parserRankItem()
+        }
+    }
 
+    fun loadRankInSchool() = viewModelScope.launch {
+        UserUtils.userInfo?.let { userInfo ->
+            val myRankResponse = apiService.getRankByUserId(userInfo.schoolId, userInfo.id)
+            _rankInSchool.value = myRankResponse.parserRankItem(me = true)
+        }
+    }
+
+    fun loadSchoolRankInRegion() = viewModelScope.launch {
+        UserUtils.userInfo?.let { userInfo ->
+            val myRankResponse = apiService.getSchoolRankBySchoolId("1", userInfo.schoolId)
+            _schoolRankInRegion.value = myRankResponse.parserRankItem(me = true)
+        }
+    }
 }

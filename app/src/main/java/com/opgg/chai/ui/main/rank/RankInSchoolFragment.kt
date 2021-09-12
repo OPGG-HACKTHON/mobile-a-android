@@ -1,6 +1,7 @@
 package com.opgg.chai.ui.main.rank
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,29 +37,40 @@ class RankInSchoolFragment: Fragment()   {
         with(binding) {
             fragment = this@RankInSchoolFragment
             vm = this.vm
-            adapter = RankAdapter(onRankItemClick)
+            adapter = RankAdapter().apply {
+                setListener(onRankItemClick)
+            }
         }
+
+        val school = arguments?.getParcelable<RankItem>("rankItem")
+        school?.let {
+            binding.rankInSchoolProfileName.text = it.name
+            binding.rankInSchoolValue.text = it.rank
+            binding.rankInSchoolProfileScore.text = it.score
+            binding.rankInSchoolArrow.setImageDrawable(ContextCompat.getDrawable(requireContext(),  it.getRankArrowImage()))
+        }
+
+        vm.school = school
         subscribeObserver()
         performAction()
     }
 
     private fun subscribeObserver() {
         vm.ranks.observe(viewLifecycleOwner) {
-            binding.adapter?.submitList("서울고 랭킹 TOP 10", it)
+            binding.adapter?.submitList(it)
         }
 
-        vm.school.observe(viewLifecycleOwner) {
-            binding.rankInSchoolProfileName.text = it.name
-            binding.rankInSchoolValue.text = it.rank
-            binding.rankInSchoolProfileScore.text = it.score
-            val arrowResource = if(it.isRankUp) R.drawable.ic_rank_up_arrow else R.drawable.ic_rank_down_arrow
-            binding.rankInSchoolArrow.setImageDrawable(ContextCompat.getDrawable(requireContext(), arrowResource))
+        vm.progress.observe(viewLifecycleOwner) {
+            binding.progress.visibility = if(it) View.VISIBLE else View.GONE
+        }
+
+        vm.title.observe(viewLifecycleOwner) {
+//            binding.adapter?.setHeaderMessage(it)
         }
     }
 
     private fun performAction() {
         vm.loadRank()
-        vm.loadSchool()
     }
 
     fun onBackClick(view: View) {

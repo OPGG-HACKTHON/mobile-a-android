@@ -24,7 +24,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/ic_character_checked"
+            android:src="@drawable/ic_character_checked"
             android:alpha="0.8"
             app:layout_constraintTop_toTopOf="@id/character_img"
             app:layout_constraintStart_toStartOf="@id/character_img"

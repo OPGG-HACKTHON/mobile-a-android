@@ -5,8 +5,14 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import androidx.databinding.DataBindingUtil
 import com.opgg.chai.R
 import com.opgg.chai.databinding.ItemCompareCategoryBinding
@@ -18,11 +24,11 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
     private var bind: ViewRankChampionCompareCategoryBinding
             = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.view_rank_champion_compare_category, this, true)
-    private var compareCategoryButtons: MutableList<ItemCompareCategoryBinding> = mutableListOf()
     private var items: List<CompareCategoryItem>? = null
 
     private var checkedView: CheckBox? = null
-    private var listener: ((Boolean) -> Unit)? = null
+    private var listener: ((CompareCategoryItem?) -> Unit)? = null
+    private var lastCategory = ""
 
     fun setData(items: List<CompareCategoryItem>) {
         this.items = items
@@ -31,8 +37,23 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                 container = this@RankChampionCompareCategoryView
                 item = it
             }
+            if(lastCategory != it.category) {
+                lastCategory = it.category
+
+                val text = TextView(context).apply {
+                    text = it.category
+                    textSize = 18F
+                    setTextColor(ContextCompat.getColor(context, R.color.text_primary))
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        resources.getDimensionPixelSize(R.dimen._32dp)
+                    ).apply {
+                        setMargins(0, resources.getDimensionPixelSize(R.dimen._24dp), 0, 0)
+                    }
+                }
+                bind.layoutCompareCategory.addView(text)
+            }
             bind.layoutCompareCategory.addView(itemBinding.root)
-            compareCategoryButtons.add(itemBinding)
         }
     }
 
@@ -47,10 +68,15 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             checkedView = checkbox
         }
 
-        this.listener?.invoke(checkedView!!.isChecked)
+        val choseItem = if(checkedView!!.isChecked) {
+            checkedView!!.tag as CompareCategoryItem
+        } else {
+            null
+        }
+        this.listener?.invoke(choseItem)
     }
 
-    fun setListener(listener: (Boolean) -> Unit) {
+    fun setListener(listener: (CompareCategoryItem?) -> Unit) {
         this.listener = listener
     }
 }
