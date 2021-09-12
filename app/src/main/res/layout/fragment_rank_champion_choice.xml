@@ -246,8 +246,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        </ViewFlipper>
+      </ViewFlipper>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

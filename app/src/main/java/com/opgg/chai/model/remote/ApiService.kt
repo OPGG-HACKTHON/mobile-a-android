@@ -63,5 +63,4 @@ interface ApiService {
     @GET("schools/{id}")
     suspend fun getSchoolBy(
         @Path("id") schoolId: String): School
-
 }

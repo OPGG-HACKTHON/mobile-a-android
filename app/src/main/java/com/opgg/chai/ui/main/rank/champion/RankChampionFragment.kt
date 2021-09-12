@@ -67,8 +67,6 @@ class RankChampionFragment: Fragment() {
                 }
             }
         }
-
-
     }
 
     private fun subscribeObserver() {
@@ -109,6 +107,7 @@ class RankChampionFragment: Fragment() {
 
         vm.progress.observe(viewLifecycleOwner) {
             binding.progress.visibility = if(it) View.VISIBLE else View.GONE
+
         }
     }
 
