@@ -18,7 +18,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     @Inject override lateinit var viewModel: TitleViewModel
     override val layoutRes: Int = R.layout.fragment_title
     private val historyAdapter: TitleHistoryAdapter = TitleHistoryAdapter()
-    private val titleAdapter = TitleItemAdapter()
+    private val titleAdapter: TitleItemAdapter = TitleItemAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +28,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         binding.view = this
         binding.viewmodel = viewModel
+        binding.adapter = titleAdapter
 
         initLayout()
 

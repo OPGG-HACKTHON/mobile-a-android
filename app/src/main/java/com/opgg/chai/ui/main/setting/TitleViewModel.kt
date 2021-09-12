@@ -4,14 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.opgg.chai.model.data.auth.Title
 import com.opgg.chai.model.data.auth.User
 import com.opgg.chai.model.data.title.TitleHistoryItem
-import com.opgg.chai.model.data.title.TitleItem
 import com.opgg.chai.model.repository.SettingRepository
 import com.opgg.chai.util.UserUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 class TitleViewModel @Inject constructor(val settingRepository: SettingRepository) : ViewModel() {
@@ -20,8 +21,8 @@ class TitleViewModel @Inject constructor(val settingRepository: SettingRepositor
     private val _titleHistory = MutableLiveData<List<TitleHistoryItem>>()
     val titleHistory: LiveData<List<TitleHistoryItem>> = _titleHistory
 
-    private val _titleList = MutableLiveData<List<TitleItem>>()
-    val titleList: LiveData<List<TitleItem>> = _titleList
+    private val _titleList = MutableLiveData<List<Title>>()
+    val titleList: LiveData<List<Title>> = _titleList
 
     init {
         viewModelScope.launch {
@@ -45,6 +46,27 @@ class TitleViewModel @Inject constructor(val settingRepository: SettingRepositor
             val result = settingRepository.getUserTitle(id)
 
             withContext(Dispatchers.Main) { _titleList.value = result }
+        }
+    }
+
+    fun setUserTitle(title: Title?) {
+        title?.let {
+            val titleId = it.id ?: 1
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    try {
+                        val userId = userInfo?.id ?: 1
+                        val body = HashMap<String, Int>().apply {
+                            put("id", titleId)
+                        }
+                        settingRepository.setUserTitle(userId, body)
+
+                        UserUtils.userInfo?.title = title
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
         }
     }
 }

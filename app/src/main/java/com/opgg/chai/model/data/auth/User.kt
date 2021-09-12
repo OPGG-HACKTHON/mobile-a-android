@@ -13,5 +13,5 @@ data class User(
     @Json(name = "school")
     val school: School?,
     @Json(name = "title")
-    val title: Title?
+    var title: Title?
 )

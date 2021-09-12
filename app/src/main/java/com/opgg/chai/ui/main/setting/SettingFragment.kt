@@ -65,7 +65,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
     }
 
     fun moveTitle(view: View) {
-        Log.d("setting", "movetitle")
         navController.navigate(R.id.action_settingFragment_to_titleFragment)
     }
 

@@ -5,7 +5,8 @@
     <data>
         <variable
             name="item"
-            type="com.opgg.chai.model.data.title.TitleItem" />
+            type="com.opgg.chai.model.data.auth.Title" />
+
     </data>
 
     <LinearLayout
@@ -16,6 +17,7 @@
         android:layout_marginBottom="8dp">
 
         <TextView
+            android:id="@+id/title_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
