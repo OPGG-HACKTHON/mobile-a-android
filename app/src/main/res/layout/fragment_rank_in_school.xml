@@ -31,6 +31,9 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:padding="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/ic_back_24"
                 android:id="@+id/rank_in_school_back"
                 android:layout_marginStart="18dp"
                 android:onClick="@{fragment::onBackClick}"
@@ -40,6 +43,8 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:textSize="16sp"
+                android:textColor="#374553"
                 android:id="@+id/rank_in_school_title"
                 android:text="@string/rank_in_school"
                 app:layout_constraintRight_toRightOf="parent"
@@ -56,35 +61,41 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rank_in_school_toolbar"
-            android:padding="20dp"
+            android:padding="24dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="84dp">
 
             <ImageView
+                android:layout_marginStart="16dp"
                 android:padding="6dp"
                 tools:src="@drawable/profile_sample"
                 android:id="@+id/rank_in_school_profile_image"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="58dp"
-                android:layout_height="58dp"/>
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
 
             <TextView
-                style="@style/title1"
+                android:textSize="14sp"
+                android:textColor="@color/grey100"
+                android:textStyle="bold"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="12dp"
                 tools:text="서울고등학교"
                 android:id="@+id/rank_in_school_profile_name"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintRight_toLeftOf="@id/rank_in_school_value"
                 app:layout_constraintTop_toTopOf="@id/rank_in_school_profile_image"
                 app:layout_constraintLeft_toRightOf="@id/rank_in_school_profile_image"
                 app:layout_constraintBottom_toTopOf="@id/rank_in_school_profile_score"
+                android:includeFontPadding="false"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
             <TextView
-                style="@style/profile_lp"
+                android:textSize="12sp"
+                android:textColor="@color/grey100"
                 android:layout_marginEnd="16dp"
                 android:id="@+id/rank_in_school_profile_score"
                 app:layout_constraintRight_toLeftOf="@id/rank_in_school_value"
@@ -92,10 +103,12 @@
                 app:layout_constraintLeft_toLeftOf="@id/rank_in_school_profile_name"
                 app:layout_constraintBottom_toBottomOf="@id/rank_in_school_profile_image"
                 android:layout_width="0dp"
+                android:includeFontPadding="false"
                 android:layout_height="wrap_content"
                 tools:text="통합점수 1,724 LP"/>
 
             <ImageView
+                android:layout_marginEnd="16dp"
                 android:id="@+id/rank_in_school_arrow"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -104,6 +117,8 @@
                 android:layout_height="16dp"/>
 
             <TextView
+                android:textSize="12sp"
+                android:textColor="@color/grey100"
                 android:id="@+id/rank_in_school_value"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -132,6 +147,17 @@
             tools:listitem="@layout/item_rank"
             android:layout_width="match_parent"
             android:layout_height="0dp"/>
+
+        <ProgressBar
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -38,23 +38,37 @@ class HomeViewModel @Inject constructor(
 
     fun loadMyProfile() = viewModelScope.launch {
         UserUtils.userInfo?.let {
-            val response = apiService.getProfileBy(it.id.toString())
+            try {
+                val response = apiService.getProfileBy(it.id.toString())
 
-            _myProfile.value = response.parserRankItem()
+                _myProfile.value = response.parserRankItem()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
     fun loadRankInSchool() = viewModelScope.launch {
         UserUtils.userInfo?.let { userInfo ->
-            val myRankResponse = apiService.getRankByUserId(userInfo.schoolId, userInfo.id)
-            _rankInSchool.value = myRankResponse.parserRankItem(me = true)
+            try {
+                val myRankResponse =
+                    apiService.getRankByUserId(userInfo?.school?.name ?: "", userInfo?.id ?: 1)
+                _rankInSchool.value = myRankResponse.parserRankItem(me = true)
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
     fun loadSchoolRankInRegion() = viewModelScope.launch {
         UserUtils.userInfo?.let { userInfo ->
-            val myRankResponse = apiService.getSchoolRankBySchoolId("1", userInfo.schoolId)
-            _schoolRankInRegion.value = myRankResponse.parserRankItem(me = true)
+            try {
+                val myRankResponse =
+                    apiService.getSchoolRankBySchoolId("1", userInfo?.school?.name ?: "")
+                _schoolRankInRegion.value = myRankResponse.parserRankItem(me = true)
+            }catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
         }
     }
 }
