@@ -44,7 +44,11 @@
         android:id="@+id/settingFragment"
         android:name="com.opgg.chai.ui.main.setting.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/rankFragment"
         android:name="com.opgg.chai.ui.main.rank.RankFragment"
@@ -137,5 +141,9 @@
         android:id="@+id/confirmFragment"
         android:name="com.opgg.chai.ui.dialog.ConfirmFragment"
         android:label="ConfirmFragment" />
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.opgg.chai.ui.main.setting.TitleFragment"
+        android:label="TitleFragment" />
 
 </navigation>

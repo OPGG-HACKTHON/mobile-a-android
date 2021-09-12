@@ -34,13 +34,15 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
 
     fun initLayout() {
         viewModel.isMoveHome.observe(viewLifecycleOwner, {
-            if (it) { navController.navigate(R.id.loginFragment) }
+            if (it) {
+                navController.navigate(R.id.loginFragment)
+            }
         })
 
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>("isConfirm")
             ?.observe(viewLifecycleOwner, {
-                    Log.d("result", "$it")
-                    if (it) viewModel.getDialogResult()
+                Log.d("result", "$it")
+                if (it) viewModel.getDialogResult()
             })
     }
 
@@ -60,6 +62,11 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
         )
         viewModel.action = "leave"
         navController.navigate(R.id.confirmFragment, bundle)
+    }
+
+    fun moveTitle(view: View) {
+        Log.d("setting", "movetitle")
+        navController.navigate(R.id.action_settingFragment_to_titleFragment)
     }
 
 }

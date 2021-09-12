@@ -90,7 +90,7 @@
             android:textColor="@color/fill_blue"
             android:textSize="16sp"
             android:stateListAnimator="@null"
-            android:enabled="false"
+            android:onClick="@{view::moveTitle}"
             android:background="@drawable/round_rectangle_stroke_black"
             app:layout_constraintTop_toBottomOf="@id/email_edt" />
 
