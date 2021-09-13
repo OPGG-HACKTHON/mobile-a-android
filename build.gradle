@@ -12,6 +12,8 @@ buildscript {
     ext.nav_version = "2.3.5"
     ext.google_login_version = "19.2.0"
     ext.glide_version = "4.10.0"
+    ext.flow_layout_version = "1.3.3"
+    ext.korean_indexer_listview_version = "1.1.5"
     ext.flex_box = "3.0.0"
 
 
@@ -19,6 +21,7 @@ buildscript {
         google()
         jcenter()
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -30,6 +33,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 

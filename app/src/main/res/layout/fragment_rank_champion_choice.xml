@@ -17,6 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:padding="24dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -119,22 +120,24 @@
                     android:src="@drawable/line_dotted_horizontal"/>
 
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.github.windsekirun.koreanindexer.KoreanIndexerRecyclerView
                     android:layout_marginTop="24dp"
-                    tools:listitem="@layout/item_rank_champion"
+                    android:id="@+id/rank_champion_list"
+                    android:layout_width="0dp"
+                    android:clipChildren="false"
+                    app:adapter="@{adapter}"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="3"
                     tools:itemCount="50"
-                    app:adapter="@{adapter}"
+                    tools:listitem="@layout/item_rank_champion"
+                    app:useSection="false"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rank_champion_step_1_divider"
                     app:layout_constraintBottom_toBottomOf="@id/rank_champion_step_1_submit"
-                    app:items="@{vm.champions}"
-                    android:id="@+id/rank_champion_list"
-                    android:layout_width="0dp"
+                    app:indexerBackground="@color/fill_disabled"
+                    app:indexerTextColor="@color/grey100"
                     android:layout_height="0dp"/>
-
 
                 <Button
                     android:enabled="false"
@@ -246,7 +249,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-      </ViewFlipper>
+        </ViewFlipper>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

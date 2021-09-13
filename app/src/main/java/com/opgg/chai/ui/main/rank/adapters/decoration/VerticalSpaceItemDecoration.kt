@@ -1,4 +1,4 @@
-package com.opgg.chai.ui.main.rank.adapters.decorator
+package com.opgg.chai.ui.main.rank.adapters.decoration
 
 import android.graphics.Rect
 import android.view.View

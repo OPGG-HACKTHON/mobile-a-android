@@ -24,15 +24,6 @@ class RankChampionViewHolder(parent: View): BaseViewHolder<ItemRankChampionBindi
         }
     }
 
-    init {
-        binding.container.setOnClickListener {
-            binding.item?.isChecked = !(binding.item?.isChecked ?: true)
-            itemClick?.invoke(it, adapterPosition)
-        }
-    }
-
-    var itemClick: ((View, Int) -> Unit)? = null
-
 
     override fun onBind(item: ChampionItem) {
         binding.item = item
