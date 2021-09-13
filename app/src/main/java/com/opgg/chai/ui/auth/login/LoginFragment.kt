@@ -19,8 +19,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override val layoutRes: Int = R.layout.fragment_login
 
     private val loginWithGoogle = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-        viewModel.handleGoogleLogin(task)
+        try {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            viewModel.handleGoogleLogin(task)
+        } catch (e: Exception) { e.printStackTrace() }
     }
 
     override fun onCreateView(
