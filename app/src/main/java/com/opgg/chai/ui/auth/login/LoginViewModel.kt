@@ -55,7 +55,7 @@ class LoginViewModel @Inject constructor(
                     val result = authService.isOurUser(autData)
                     result?.message?.let {
                         if(it.contains("유저 정보가 없습니다. 회원가입을 진행합니다.")) movePage(R.id.action_loginFragment_to_joinTermsFragment)
-                        else getValidateUserInfo(result?.accessToken!!)
+                        else getValidateUserInfo(result?.accessToken!!, account.email)
                     }
 
 
@@ -73,11 +73,11 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getValidateUserInfo(token: String) {
-
+    private suspend fun getValidateUserInfo(token: String, email: String?) {
         try {
             UserUtils.userInfo = authService.getUserInfo(token)
-            Log.d("login", "user info:${UserUtils.userInfo?.email}")
+            UserUtils.userEmail = email
+            Log.d("login", "user info:${email}")
             movePage(R.id.action_loginFragment_to_homeFragment)
         } catch (e: java.lang.Exception) {
             Log.d("test error", "${e.localizedMessage}")

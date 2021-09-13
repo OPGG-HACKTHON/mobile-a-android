@@ -43,7 +43,7 @@ class RankViewModel @ViewModelInject constructor(
         UserUtils.userInfo?.let { userInfo ->
             _progress.value = true
             val response = apiService.getSchoolRanks("1")
-            val myRankResponse = apiService.getSchoolRankBySchoolId("1", userInfo.schoolId)
+            val myRankResponse = apiService.getSchoolRankBySchoolId("1", userInfo?.school?.id ?: "1")
 
             val items = response
                 .map { rankInSchoolData ->
@@ -60,8 +60,8 @@ class RankViewModel @ViewModelInject constructor(
     private fun loadRankInSchool() = viewModelScope.launch {
         UserUtils.userInfo?.let { userInfo ->
             _progress.value = true
-            val response = apiService.getRanksInSchool(userInfo.schoolId)
-            val myRankResponse = apiService.getRankByUserId(userInfo.schoolId, userInfo.id)
+            val response = apiService.getRanksInSchool(userInfo?.school?.id ?: "1")
+            val myRankResponse = apiService.getRankByUserId(userInfo?.school?.id ?: "1", userInfo?.id ?: 1)
 
             val items = response
                 .filter { it.id != userInfo.id }
