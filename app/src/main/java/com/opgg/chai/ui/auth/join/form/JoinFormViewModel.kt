@@ -24,6 +24,7 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
     val emailAddress: LiveData<String> = _emailAddress
     val schoolName: MutableLiveData<String> = MutableLiveData<String>()
     var schoolId: String? = null
+    val isShow = MutableLiveData<Boolean>(false)
 
     lateinit var accessToken: String // todo: 대체될 수 있음
 
@@ -51,6 +52,7 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
 
     fun signupUser() {
         viewModelScope.launch {
+            setShowProgress(true)
             withContext(Dispatchers.IO) {
                 try {
                     val authData = HashMap<String, String>().apply {
@@ -65,9 +67,10 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
                     UserUtils.userInfo = user
                     UserUtils.userEmail = _emailAddress.value
                     moveHome()
-
+                    setShowProgress(false)
                 } catch (e: Exception) {
                     e.printStackTrace()
+                    setShowProgress(false)
                 }
             }
         }
@@ -76,6 +79,12 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
     suspend fun moveHome() {
         withContext(Dispatchers.Main) {
             navController.navigate(R.id.action_joinFormFragment_to_homeFragment)
+        }
+    }
+
+    suspend fun setShowProgress(_isShow: Boolean) {
+        withContext(Dispatchers.Main) {
+            isShow.value = _isShow
         }
     }
 }
