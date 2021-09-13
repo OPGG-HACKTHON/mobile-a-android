@@ -63,12 +63,12 @@ class RankChampionViewModel @ViewModelInject constructor(
             val response = apiService.getChampionRank(
                 choseChampion!!.id.toString(),
                 choseCompareCategory!!.id.toString(),
-                UserUtils.userInfo?.schoolId ?: "Dd")
+                UserUtils.userInfo?.school?.id ?: "Dd")
 
             val myRankResponse = apiService.getChampionRankByUserId(
                 choseChampion!!.id.toString(),
                 choseCompareCategory!!.id.toString(),
-                UserUtils.userInfo?.schoolId ?: "Dd",
+                UserUtils.userInfo?.school?.id ?: "Dd",
                 UserUtils.userInfo?.id.toString()
             )
 

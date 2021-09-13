@@ -12,7 +12,7 @@
         <item name="fontWeight">700</item>
     </style>
 
-    <style name="caption1">
+    <style name="profile_lp">
         <item name="color">@color/primary</item>
         <item name="android:textSize">12sp</item>
         <item name="fontWeight">400</item>

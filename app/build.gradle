@@ -97,4 +97,6 @@ dependencies {
     // inexListView
     implementation "com.github.WindSekirun:KoreanIndexerListView:$korean_indexer_listview_version"
 
+    //flexbox
+    implementation "com.google.android.flexbox:flexbox:$flex_box"
 }
