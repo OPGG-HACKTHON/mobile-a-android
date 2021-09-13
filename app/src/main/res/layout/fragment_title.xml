@@ -11,10 +11,6 @@
         <variable
             name="viewmodel"
             type="com.opgg.chai.ui.main.setting.TitleViewModel" />
-        
-        <variable
-            name="adapter"
-            type="com.opgg.chai.ui.main.setting.TitleItemAdapter" />
 
         <import type="android.view.View" />
     </data>
@@ -100,6 +96,7 @@
             android:backgroundTint="@color/fill_point"
             android:padding="5dp"
             android:text="@{viewmodel.userInfo.title.exposureName}"
+            android:textAlignment="center"
             tools:text="리신장인"/>
 
         <androidx.core.widget.NestedScrollView
@@ -216,10 +213,10 @@
             android:text="@string/title_change_complete"
             android:textSize="16sp"
             android:textColor="@color/fill_background"
-            android:visibility="@{adapter.activateButton? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{viewmodel.isActiveButton ? View.VISIBLE : View.INVISIBLE}"
             android:background="@drawable/round_rectangle"
             android:backgroundTint="@color/fill_blue"
-            android:onClick="@{() -> viewmodel.setUserTitle(adapter.select)}"
+            android:onClick="@{() -> viewmodel.setUserTitle()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 

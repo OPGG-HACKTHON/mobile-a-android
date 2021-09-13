@@ -25,6 +25,9 @@ class TitleViewModel @Inject constructor(val settingRepository: SettingRepositor
     private val _userInfo = MutableLiveData<User>(UserUtils.userInfo!!)
     val userInfo: LiveData<User> = _userInfo
 
+    val isActiveButton = MutableLiveData<Boolean>(false)
+    var selectedTitle: Title? = null
+
     init {
         viewModelScope.launch {
             getTitleHistory()
@@ -50,8 +53,8 @@ class TitleViewModel @Inject constructor(val settingRepository: SettingRepositor
         }
     }
 
-    fun setUserTitle(title: Title?) {
-        title?.let {
+    fun setUserTitle() {
+        selectedTitle?.let {
             val titleId = it.id ?: 1
             viewModelScope.launch {
                 withContext(Dispatchers.IO) {
@@ -62,9 +65,11 @@ class TitleViewModel @Inject constructor(val settingRepository: SettingRepositor
                         }
                         settingRepository.setUserTitle(userId, body)
 
-                        UserUtils.userInfo?.title = title
+                        UserUtils.userInfo?.title = selectedTitle
                         updateUserTitle(UserUtils.userInfo)
+                        changeButtonState(false)
                     } catch (e: Exception) {
+                        changeButtonState(false)
                         e.printStackTrace()
                     }
                 }
@@ -76,5 +81,16 @@ class TitleViewModel @Inject constructor(val settingRepository: SettingRepositor
         withContext(Dispatchers.Main) {
             _userInfo.value = user!!
         }
+    }
+
+    suspend fun changeButtonState(isActive: Boolean) {
+        withContext(Dispatchers.Main) {
+            isActiveButton.value = isActive
+        }
+    }
+
+    fun setSelectTitle(title: Title?) {
+        selectedTitle = title
+        isActiveButton.value = true
     }
 }

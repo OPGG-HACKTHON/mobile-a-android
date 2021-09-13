@@ -11,14 +11,26 @@ import com.opgg.chai.R
 import com.opgg.chai.databinding.ItemTitleBinding
 import com.opgg.chai.model.data.auth.Title
 
-class TitleItemAdapter: RecyclerView.Adapter<TitleItemAdapter.TitleItemVH>() {
+class TitleItemAdapter(val viewModel: TitleViewModel): RecyclerView.Adapter<TitleItemAdapter.TitleItemVH>() {
     val items = ArrayList<Title>()
     val activateButton = MutableLiveData<Boolean>(false)
     var select: Title? = null
+    var prevSelect: Int = -1
 
     inner class TitleItemVH(val binding: ItemTitleBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Title) {
             binding.item = item
+
+            select?.let { si ->
+                if(si.id!! == item.id!!) {
+                    binding.titleName.backgroundTintList = ColorStateList.valueOf(itemView.resources.getColor(R.color.fill_blue))
+                    binding.titleName.setTextColor(itemView.resources.getColor(R.color.fill_background))
+                } else {
+                    binding.titleName.background = itemView.resources.getDrawable(R.drawable.round_rectangle_dash)
+                    binding.titleName.backgroundTintList = null
+                    binding.titleName.setTextColor(itemView.resources.getColor(R.color.fill_grey100))
+                }
+            }
         }
     }
 
@@ -29,19 +41,13 @@ class TitleItemAdapter: RecyclerView.Adapter<TitleItemAdapter.TitleItemVH>() {
     }
 
     override fun onBindViewHolder(holder: TitleItemVH, position: Int) {
+        Log.d("adapter","position : $position")
         holder.itemView.setOnClickListener {
             activateButton.value = true
             select = items[position]
-            Log.d("select item", "$position, ${items[position].id}")
-        }
+            viewModel.setSelectTitle(select)
 
-        select?.let { si ->
-            Log.d("adapter", "${si.id} && ${items[position].id}")
-            if(si.id!! == items[position].id!!) {
-                holder.binding.titleName.backgroundTintList = ColorStateList.valueOf(holder.binding.root.resources.getColor(R.color.fill_blue))
-            } else {
-                holder.binding.titleName.background = holder.binding.root.resources.getDrawable(R.drawable.round_rectangle_dash)
-            }
+            notifyDataSetChanged()
         }
 
         holder.bind(items[position])
