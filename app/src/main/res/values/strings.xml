@@ -90,5 +90,7 @@
     <string name="title_change_complete">타이틀 변경 완료</string>
     <string name="title_recent_month">최근 1달</string>
     <string name="title_history">타이틀 히스토리</string>
+    <string name="title_get"><font color='#397EF6'>→</font></string>
+    <string name="title_lose"><font color='#F1114B'>←</font></string>
 
 </resources>

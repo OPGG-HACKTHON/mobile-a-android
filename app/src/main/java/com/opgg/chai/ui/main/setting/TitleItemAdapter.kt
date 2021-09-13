@@ -32,6 +32,7 @@ class TitleItemAdapter: RecyclerView.Adapter<TitleItemAdapter.TitleItemVH>() {
         holder.itemView.setOnClickListener {
             activateButton.value = true
             select = items[position]
+            Log.d("select item", "$position, ${items[position].id}")
         }
 
         select?.let { si ->

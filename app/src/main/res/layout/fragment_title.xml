@@ -188,18 +188,19 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/title_history_list"
-                    android:layout_width="match_parent"
+                    addHistory="@{viewmodel.titleHistory}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="@id/history_background"
                     app:layout_constraintStart_toStartOf="@id/history_background"
                     app:layout_constraintTop_toBottomOf="@id/title_header3"
-                    app:layout_constraintBottom_toBottomOf="@id/history_background"
-                    tools:listitem="@layout/item_title_history"
-                    addHistory="@{viewmodel.titleHistory}"/>
+                    app:layout_constraintEnd_toEndOf="@id/history_background"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:listitem="@layout/item_title_history" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

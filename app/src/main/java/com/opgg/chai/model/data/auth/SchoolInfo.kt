@@ -7,17 +7,19 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class SchoolInfo(
     @Json(name = "address")
-    val address: String,
+    val address: String?,
     @Json(name = "createdAt")
-    val createdAt: String,
+    val createdAt: String?,
     @Json(name = "division")
-    val division: String,
+    val division: String?,
     @Json(name = "id")
-    val id: String,
+    val id: String?,
     @Json(name = "name")
-    val name: String,
+    val name: String?,
     @Json(name = "regionId")
-    val regionId: String,
+    val regionId: String?,
     @Json(name = "updatedAt")
-    val updatedAt: String
+    val updatedAt: String?,
+    @Json(name = "imageUrl")
+    val imageUrl: String?,
 )
