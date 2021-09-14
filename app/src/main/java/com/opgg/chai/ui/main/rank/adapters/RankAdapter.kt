@@ -9,7 +9,7 @@ import com.opgg.chai.ui.main.rank.adapters.holders.RankViewHolder
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.ui.base.BaseViewHolder
 
-class RankAdapter(): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
+class RankAdapter: RecyclerView.Adapter<BaseViewHolder<*, *>>() {
 
     companion object {
         const val TYPE_RANK_HEADER = 1
@@ -18,7 +18,6 @@ class RankAdapter(): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
     }
 
     var items: MutableList<RankItem> = mutableListOf()
-    private var title: String = ""
     private var onItemClick: ((View, RankItem) -> Unit)? = null
 
     fun setListener(listener: ((View, RankItem) -> Unit)?) {
@@ -71,7 +70,4 @@ class RankAdapter(): RecyclerView.Adapter<BaseViewHolder<*, *>>() {
             }
         }
     }
-
-
-
 }
