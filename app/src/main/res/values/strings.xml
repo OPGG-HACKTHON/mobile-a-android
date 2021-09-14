@@ -28,6 +28,9 @@
     <string name="rank_champion_choice_submit">챔피언 선택완료</string>
     <string name="rank_champion_choice_data_submit">데이터 선택완료</string>
 
+    <string name="rank_my_rank_in_school">%s에서 나의 랭크</string>
+
+
 
     <!-- auth -->
     <string name="server_client_id">742823777512-r3petmmlnt08radg6uu8hhecubnutpov.apps.googleusercontent.com</string>

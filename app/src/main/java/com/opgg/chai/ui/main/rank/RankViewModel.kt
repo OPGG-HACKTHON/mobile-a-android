@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.opgg.chai.ChiApplication
+import com.opgg.chai.R
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.model.remote.ApiService
 import com.opgg.chai.util.UserUtils
@@ -58,21 +60,24 @@ class RankViewModel @ViewModelInject constructor(
     }
 
     private fun loadRankInSchool() = viewModelScope.launch {
-        UserUtils.userInfo?.let { userInfo ->
-            _progress.value = true
-            val response = apiService.getRanksInSchool(userInfo?.school?.id ?: "1")
-            val myRankResponse = apiService.getRankByUserId(userInfo?.school?.id ?: "1", userInfo?.id ?: 1)
+        UserUtils.userInfo?.let {
+            if(it.school?.id != null && it.id != null) {
+                _progress.value = true
+                val response = apiService.getRanksInSchool(it.school.id)
+                val myRankResponse = apiService.getRankByUserId(it.school.id, it.id)
 
-            val items = response
-                .filter { it.id != userInfo.id }
-                .map { rankInSchoolData ->
-                rankInSchoolData.parserRankItem()
-            }.toMutableList()
-            items.add(0, myRankResponse.parserRankItem(me = true))
-            items.add(0, RankItem(viewType = "HEADER", title = "랭킹"))
-            items.add(items.size, RankItem(viewType = "FOOTER"))
-            _rank.value = items
-            _progress.value = false
+                val items = response
+                    .filter { rankInSchoolData -> rankInSchoolData.id != it.id }
+                    .map { rankInSchoolData ->
+                        rankInSchoolData.parserRankItem()
+                    }.toMutableList()
+                items.add(0, myRankResponse.parserRankItem(me = true))
+                items.add(0, RankItem(viewType = "HEADER", title = getApplication<ChiApplication>().resources.getString(
+                    R.string.rank_my_rank_in_school, it.school.name)))
+                items.add(items.size, RankItem(viewType = "FOOTER"))
+                _rank.value = items
+                _progress.value = false
+            }
         }
     }
 
