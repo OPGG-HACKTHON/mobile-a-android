@@ -74,9 +74,9 @@ class RankChampionViewModel @ViewModelInject constructor(
 
             val items = mutableListOf<RankItem>()
             val notIncludeMeItems = response.filter { it.id != myRankResponse.id }
-                .map { it.parserRankItem() }.toList()
+                .map { it.parserChampionRankItem() }.toList()
 
-            items.add(myRankResponse.parserRankItem(me = true))
+            items.add(myRankResponse.parserChampionRankItem(me = true))
             items.addAll(notIncludeMeItems)
             _championRanks.value = items
             _progress.value = false
