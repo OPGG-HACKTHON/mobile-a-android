@@ -57,8 +57,6 @@ class LoginViewModel @Inject constructor(
                         if(it.contains("유저 정보가 없습니다. 회원가입을 진행합니다.")) movePage(R.id.action_loginFragment_to_joinTermsFragment)
                         else getValidateUserInfo(result?.accessToken!!, account.email)
                     }
-
-
                 } catch (e: Exception) {
                     Log.d("error", "${e.message}")
                     googleClient.revokeAccess()

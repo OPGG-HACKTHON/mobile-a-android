@@ -18,7 +18,7 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     @Inject override lateinit var viewModel: TitleViewModel
     override val layoutRes: Int = R.layout.fragment_title
     private val historyAdapter: TitleHistoryAdapter = TitleHistoryAdapter()
-    private val titleAdapter: TitleItemAdapter = TitleItemAdapter()
+    private lateinit var titleAdapter: TitleItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +28,6 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         binding.view = this
         binding.viewmodel = viewModel
-        binding.adapter = titleAdapter
 
         initLayout()
 
@@ -38,6 +37,8 @@ class TitleFragment : BaseFragment<FragmentTitleBinding, TitleViewModel>() {
     fun moveBack(view: View) { navController.popBackStack() }
 
     fun initLayout() {
+        titleAdapter = TitleItemAdapter(viewModel)
+
         binding.titleHistoryList.adapter = historyAdapter
         binding.titleList.adapter = titleAdapter
         binding.titleList.layoutManager = FlexboxLayoutManager(requireContext()).apply {

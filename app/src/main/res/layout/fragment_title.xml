@@ -11,10 +11,6 @@
         <variable
             name="viewmodel"
             type="com.opgg.chai.ui.main.setting.TitleViewModel" />
-        
-        <variable
-            name="adapter"
-            type="com.opgg.chai.ui.main.setting.TitleItemAdapter" />
 
         <import type="android.view.View" />
     </data>
@@ -100,6 +96,7 @@
             android:backgroundTint="@color/fill_point"
             android:padding="5dp"
             android:text="@{viewmodel.userInfo.title.exposureName}"
+            android:textAlignment="center"
             tools:text="리신장인"/>
 
         <androidx.core.widget.NestedScrollView
@@ -188,18 +185,19 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/title_history_list"
-                    android:layout_width="match_parent"
+                    addHistory="@{viewmodel.titleHistory}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="@id/history_background"
                     app:layout_constraintStart_toStartOf="@id/history_background"
                     app:layout_constraintTop_toBottomOf="@id/title_header3"
-                    app:layout_constraintBottom_toBottomOf="@id/history_background"
-                    tools:listitem="@layout/item_title_history"
-                    addHistory="@{viewmodel.titleHistory}"/>
+                    app:layout_constraintEnd_toEndOf="@id/history_background"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:listitem="@layout/item_title_history" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -215,10 +213,10 @@
             android:text="@string/title_change_complete"
             android:textSize="16sp"
             android:textColor="@color/fill_background"
-            android:visibility="@{adapter.activateButton? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{viewmodel.isActiveButton ? View.VISIBLE : View.INVISIBLE}"
             android:background="@drawable/round_rectangle"
             android:backgroundTint="@color/fill_blue"
-            android:onClick="@{() -> viewmodel.setUserTitle(adapter.select)}"
+            android:onClick="@{() -> viewmodel.setUserTitle()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 

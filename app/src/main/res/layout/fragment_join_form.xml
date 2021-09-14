@@ -7,11 +7,13 @@
         <variable
             name="vm"
             type="com.opgg.chai.ui.auth.join.form.JoinFormViewModel" />
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/fill_background"
         tools:context=".ui.auth.join.form.JoinFormFragment">
 
         <ImageButton
@@ -198,6 +200,16 @@
             android:background="@drawable/r_f_button"
             android:backgroundTint="@color/fill_default"
             app:layout_constraintBottom_toBottomOf="parent"/>
+        
+        <ProgressBar
+            android:id="@+id/join_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isShow ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
