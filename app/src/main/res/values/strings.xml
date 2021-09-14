@@ -11,6 +11,7 @@
     <string name="home_detail">자세히</string>
     <string name="home_no_badge">타이틀을 설정해 보세요</string>
     <string name="home_my_rank_in_school">%s에서 나의 랭크</string>
+    <string name="home_my_school_rank_in_region">%s에서 우리 학교 랭크</string>
 
     <!-- rank !-->
     <string name="rank">랭킹</string>

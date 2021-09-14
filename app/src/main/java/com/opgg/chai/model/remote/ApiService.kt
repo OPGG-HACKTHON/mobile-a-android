@@ -3,6 +3,7 @@ package com.opgg.chai.model.remote
 import com.opgg.chai.model.data.rank.RankInSchoolData
 import com.opgg.chai.model.data.response.Champion
 import com.opgg.chai.model.data.response.CompareCategory
+import com.opgg.chai.model.data.response.Region
 import com.opgg.chai.model.data.response.School
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -63,4 +64,9 @@ interface ApiService {
     @GET("schools/{id}")
     suspend fun getSchoolBy(
         @Path("id") schoolId: String): School
+
+    @GET("regions/{id}")
+    suspend fun getRegionBy(
+        @Path("id") regionId: Int
+    ): Region
 }

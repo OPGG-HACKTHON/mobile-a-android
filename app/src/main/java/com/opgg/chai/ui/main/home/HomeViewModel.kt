@@ -8,12 +8,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.model.remote.ApiService
+import com.opgg.chai.model.repository.RegionRepository
 import com.opgg.chai.util.UserUtils
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val apiService: ApiService,
+    private val regionRepository: RegionRepository,
     application: Application
 ): AndroidViewModel(application) {
 
@@ -28,6 +30,10 @@ class HomeViewModel @Inject constructor(
     private var _myProfile = MutableLiveData<RankItem>()
     val myProfile: LiveData<RankItem>
         get() = _myProfile
+
+    private var _myRegionName = MutableLiveData<String>()
+    val myRegionName: LiveData<String>
+        get() = _myRegionName
 
     init {
         loadMyProfile()
@@ -51,11 +57,19 @@ class HomeViewModel @Inject constructor(
     private fun loadRankInSchool() = viewModelScope.launch {
         UserUtils.userInfo?.let {
             if(it.school?.id != null && it.id != null) {
+                if(it.school.regionId != null) {
+                    loadRegionName(it.school.regionId)
+                }
                 val myRankResponse =
                     apiService.getRankByUserId(it.school.id, it.id)
                 _rankInSchool.value = myRankResponse.parserRankItem(me = true)
             }
         }
+    }
+
+    private suspend fun loadRegionName(id: Int) {
+        val regionName = regionRepository.getRegionNameBy(id)
+        _myRegionName.value = regionName
     }
 
     fun loadSchoolRankInRegion() = viewModelScope.launch {
