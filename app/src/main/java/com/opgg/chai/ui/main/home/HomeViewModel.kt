@@ -42,14 +42,11 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    fun loadMyProfile() = viewModelScope.launch {
+    private fun loadMyProfile() = viewModelScope.launch {
         UserUtils.userInfo?.let {
-            try {
-                val response = apiService.getProfileBy(it.id.toString())
-
+            if(it.id != null) {
+                val response = apiService.getProfileBy(it.id)
                 _myProfile.value = response.parserRankItem()
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
         }
     }
@@ -72,14 +69,13 @@ class HomeViewModel @Inject constructor(
         _myRegionName.value = regionName
     }
 
-    fun loadSchoolRankInRegion() = viewModelScope.launch {
-        UserUtils.userInfo?.let { userInfo ->
-            try {
+    private fun loadSchoolRankInRegion() = viewModelScope.launch {
+        UserUtils.userInfo?.let {
+            if(it.school?.regionId != null) {
                 val myRankResponse =
-                    apiService.getSchoolRankBySchoolId("1", userInfo?.school?.name ?: "")
+                    apiService.getSchoolRankBySchoolId(it.school.regionId, it.school.name ?: "")
                 _schoolRankInRegion.value = myRankResponse.parserRankItem(me = true)
-            }catch (e: java.lang.Exception) {
-                e.printStackTrace()
+
             }
         }
     }

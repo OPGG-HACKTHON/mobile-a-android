@@ -31,12 +31,12 @@ interface ApiService {
     // ** 학교 간의 랭킹 ** //
     @GET("/ranks/regions/{id}")
     suspend fun getSchoolRanks(
-        @Path("id") regionId:String): List<School>
+        @Path("id") regionId: Int): List<School>
 
     // ** 나의 학교 랭킹(나의 학교 ID를 파라미터에 넣어야함) ** //
     @GET("/ranks/regions/{regionId}/schools/{schoolId}")
     suspend fun getSchoolRankBySchoolId(
-        @Path("regionId") regionId:String, @Path("schoolId") schoolId: String): School
+        @Path("regionId") regionId: Int, @Path("schoolId") schoolId: String): School
 
     // ** 챔피언 실력 비교 랭킹 **//
     @GET("/ranks/champions/{championId}/compareFields/{compareFieldId}/schools/{schoolId}")
@@ -58,7 +58,7 @@ interface ApiService {
     // ** 유저 프로필 정보 **//
     @GET("/users/{id}/profile")
     suspend fun getProfileBy(
-        @Path("id") userId: String): RankInSchoolData
+        @Path("id") userId: Int): RankInSchoolData
 
     // ** 학교 id로 검색 ** /
     @GET("schools/{id}")

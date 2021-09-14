@@ -10,11 +10,13 @@ import com.opgg.chai.ChiApplication
 import com.opgg.chai.R
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.model.remote.ApiService
+import com.opgg.chai.model.repository.RegionRepository
 import com.opgg.chai.util.UserUtils
 import kotlinx.coroutines.launch
 
 class RankViewModel @ViewModelInject constructor(
     private val apiService: ApiService,
+    private val regionRepository: RegionRepository,
     application: Application):
     AndroidViewModel(application) {
 
@@ -42,20 +44,24 @@ class RankViewModel @ViewModelInject constructor(
     }
 
     private fun loadSchoolRank() = viewModelScope.launch {
-        UserUtils.userInfo?.let { userInfo ->
-            _progress.value = true
-            val response = apiService.getSchoolRanks("1")
-            val myRankResponse = apiService.getSchoolRankBySchoolId("1", userInfo?.school?.id ?: "1")
+        UserUtils.userInfo?.let {
+            if(it.school?.regionId != null && it.school?.id != null) {
+                _progress.value = true
+                val response = apiService.getSchoolRanks(it.school.regionId)
+                val myRankResponse = apiService.getSchoolRankBySchoolId(it.school.regionId, it.school.id)
+                val regionName = regionRepository.getRegionNameBy(it.school.regionId)
 
-            val items = response
-                .map { rankInSchoolData ->
-                rankInSchoolData.parserRankItem()
-            }.toMutableList()
-            items.add(0, myRankResponse.parserRankItem(me = true))
-            items.add(0, RankItem(viewType = "HEADER", title = "랭킹"))
-            items.add(items.size, RankItem(viewType = "FOOTER"))
-            _rank.value = items
-            _progress.value = false
+                val items = response
+                    .map { rankInSchoolData ->
+                        rankInSchoolData.parserRankItem()
+                    }.toMutableList()
+                items.add(0, myRankResponse.parserRankItem(me = true))
+                items.add(0, RankItem(viewType = "HEADER", title = getApplication<ChiApplication>().resources.getString(
+                    R.string.rank_my_school_rank_in_region, regionName)))
+                items.add(items.size, RankItem(viewType = "FOOTER"))
+                _rank.value = items
+                _progress.value = false
+            }
         }
     }
 
