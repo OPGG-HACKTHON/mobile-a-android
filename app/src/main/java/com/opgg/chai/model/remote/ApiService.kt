@@ -40,18 +40,18 @@ interface ApiService {
     // ** 챔피언 실력 비교 랭킹 **//
     @GET("/ranks/champions/{championId}/compareFields/{compareFieldId}/schools/{schoolId}")
     suspend fun getChampionRank(
-        @Path("championId") championId: String,
-        @Path("compareFieldId") compareFieldId: String,
+        @Path("championId") championId: Int,
+        @Path("compareFieldId") compareFieldId: Int,
         @Path("schoolId") schoolId: String): List<RankInSchoolData>
 
 
     // ** 나의 챔피언 실력 비교 랭킹(나의 ID를 파라미터에 넣어야함) **//
     @GET("/ranks/champions/{championId}/compareFields/{compareFieldId}/schools/{schoolId}/users/{userId}")
     suspend fun getChampionRankByUserId(
-        @Path("championId") championId: String,
-        @Path("compareFieldId") compareFieldId: String,
+        @Path("championId") championId: Int,
+        @Path("compareFieldId") compareFieldId: Int,
         @Path("schoolId") schoolId: String,
-        @Path("userId") userId: String): RankInSchoolData
+        @Path("userId") userId: Int): RankInSchoolData
 
 
     // ** 유저 프로필 정보 **//

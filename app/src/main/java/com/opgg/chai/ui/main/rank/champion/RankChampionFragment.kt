@@ -55,7 +55,6 @@ class RankChampionFragment: Fragment() {
         }
         subscribeObserver()
         vm.loadCompareCategories()
-        vm.loadRanks()
 
         binding.rankChampionCategoryGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             if(radioGroup.findViewById<RadioButton>(checkedId) != null) {
