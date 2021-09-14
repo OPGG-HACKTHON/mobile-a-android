@@ -48,14 +48,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun loadRankInSchool() = viewModelScope.launch {
-        UserUtils.userInfo?.let { userInfo ->
-            try {
+    private fun loadRankInSchool() = viewModelScope.launch {
+        UserUtils.userInfo?.let {
+            if(it.school?.id != null && it.id != null) {
                 val myRankResponse =
-                    apiService.getRankByUserId(userInfo?.school?.name ?: "", userInfo?.id ?: 1)
+                    apiService.getRankByUserId(it.school.id, it.id)
                 _rankInSchool.value = myRankResponse.parserRankItem(me = true)
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
             }
         }
     }
