@@ -89,10 +89,13 @@ class RankChampionFragment: Fragment() {
                 binding.rankChampionCategoryGroup.addView(item)
             }
 
-            for(children in binding.rankChampionCategoryGroup.children) {
-                if(children is RadioButton) {
-                    if(children.text == arguments?.getParcelable<CompareCategoryItem>("compareCategory")?.name) {
-                        children.isChecked = true
+            for(child in binding.rankChampionCategoryGroup.children) {
+                if(child is RadioButton) {
+                    if(child.text == arguments?.getParcelable<CompareCategoryItem>("compareCategory")?.name) {
+                        child.isChecked = true
+                        binding.rankChampionScroll.postDelayed({
+                            binding.rankChampionScroll.scrollTo(child.x.toInt(), 0)
+                        }, 100)
                         break
                     }
                 }
