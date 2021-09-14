@@ -8,5 +8,6 @@ data class ChampionItem(
     val id: Int,
     val name: String,
     val image: String,
+    val bigImage: String,
     var isChecked: Boolean = false
 ): Parcelable

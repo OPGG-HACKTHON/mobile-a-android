@@ -9,13 +9,15 @@ data class Champion(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: String,
     @Json(name = "enName") val enName: String,
-    @Json(name = "imageUrl") val imageUrl: String) {
+    @Json(name = "imageUrl") val imageUrl: String,
+    @Json(name = "loadingUrl") val bigImageUrl: String) {
 
 
     fun parserChampionItem(): ChampionItem {
         return ChampionItem(
             id = id,
             image = imageUrl,
+            bigImage = bigImageUrl,
             name = name)
     }
 

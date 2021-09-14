@@ -51,7 +51,7 @@ class RankChampionFragment: Fragment() {
 
         choseChampion?.let {
             binding.rankChampionName.text = "${it.name} 랭킹"
-            binding.rankChampionImage.loadImage(it.image)
+            binding.rankChampionImage.loadImage(it.bigImage)
         }
         subscribeObserver()
         vm.loadCompareCategories()
