@@ -41,8 +41,8 @@
 
         <ImageButton
             android:id="@+id/join_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:src="@drawable/ic_close"
             android:background="@color/fill_background"
             android:layout_marginTop="13dp"
