@@ -52,6 +52,7 @@ class RankViewModel @ViewModelInject constructor(
                 val regionName = regionRepository.getRegionNameBy(it.school.regionId)
 
                 val items = response
+                    .filter { it.id != myRankResponse.id }
                     .map { rankInSchoolData ->
                         rankInSchoolData.parserRankItem()
                     }.toMutableList()
