@@ -38,9 +38,7 @@ class RankInSchoolFragment: Fragment()   {
         with(binding) {
             fragment = this@RankInSchoolFragment
             vm = this.vm
-            adapter = RankAdapter().apply {
-                setListener(onRankItemClick)
-            }
+            adapter = RankAdapter()
         }
 
         val school = arguments?.getParcelable<RankItem>("rankItem")
@@ -65,10 +63,6 @@ class RankInSchoolFragment: Fragment()   {
         vm.progress.observe(viewLifecycleOwner) {
             binding.progress.visibility = if(it) View.VISIBLE else View.GONE
         }
-
-        vm.title.observe(viewLifecycleOwner) {
-//            binding.adapter?.setHeaderMessage(it)
-        }
     }
 
     private fun performAction() {
@@ -77,8 +71,5 @@ class RankInSchoolFragment: Fragment()   {
 
     fun onBackClick(view: View) {
         view.findNavController().navigateUp()
-    }
-
-    private val onRankItemClick = { view: View, rankItem: RankItem ->
     }
 }

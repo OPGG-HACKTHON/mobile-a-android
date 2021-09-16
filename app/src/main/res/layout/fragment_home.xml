@@ -10,8 +10,8 @@
             name="vm"
             type="com.opgg.chai.ui.main.home.HomeViewModel"/>
         <import type="com.opgg.chai.util.UserUtils"/>
+        <import type="android.view.View"/>
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -75,28 +75,48 @@
                 android:id="@+id/home_profile_score"
                 app:layout_constraintTop_toBottomOf="@id/home_profile_name"
                 app:layout_constraintLeft_toLeftOf="@id/home_profile_name"
-                app:layout_constraintBottom_toTopOf="@id/home_profile_no_title"
+                app:layout_constraintBottom_toTopOf="@id/home_title_layout"
                 android:layout_width="0dp"
                 android:text="@{vm.myProfile.score}"
                 android:layout_height="wrap_content"
                 tools:text="통합점수 1,724 LP"/>
 
-            <TextView
-                android:textSize="10sp"
-                android:padding="8dp"
-                android:textColor="@color/grey100"
-                android:layout_marginEnd="16dp"
-                android:id="@+id/home_profile_no_title"
+            <FrameLayout
+                android:id="@+id/home_title_layout"
                 app:layout_constraintTop_toBottomOf="@id/home_profile_score"
                 app:layout_constraintLeft_toLeftOf="@id/home_profile_name"
                 app:layout_constraintBottom_toBottomOf="@id/home_profile_image"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_home_title_setting"
-                android:text="@string/home_no_badge"
-                tools:text="@string/home_no_badge"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="10sp"
+                    android:padding="8dp"
+                    android:textColor="@color/grey100"
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/home_profile_no_title"
+                    android:layout_width="wrap_content"
+                    android:visibility="@{UserUtils.INSTANCE.userInfo.title.id == 0 ? View.VISIBLE : View.GONE}"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_home_title_setting"
+                    android:text="@string/home_no_badge"
+                    tools:text="@string/home_no_badge"/>
+
+                <TextView
+                    android:id="@+id/home_title_text"
+                    android:padding="8dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/grey100"
+                    android:visibility="@{UserUtils.INSTANCE.userInfo.title.id != 0 ? View.VISIBLE : View.GONE}"
+                    android:text="@{UserUtils.INSTANCE.userInfo.title.exposureName}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </FrameLayout>
+
 
             <ImageButton
+                android:visibility="invisible"
                 android:padding="8dp"
                 android:background="?attr/selectableItemBackground"
                 android:layout_marginEnd="8dp"
@@ -247,11 +267,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
 
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
