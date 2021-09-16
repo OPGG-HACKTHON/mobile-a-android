@@ -13,5 +13,7 @@ data class TitleHistoryItem(
     @Json(name = "id")
     val id: Int?,
     @Json(name = "titleStatus")
-    val titleStatus: String?
+    val titleStatus: String?,
+    @Json(name = "logValue")
+    val logValue: String?,
 )

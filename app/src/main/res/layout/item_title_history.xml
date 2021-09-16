@@ -34,7 +34,7 @@
             android:id="@+id/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.exposureName}"
+            android:text="@{item.logValue}"
             tools:text="서울고 리신장인 타이틀을 뺏겼습니다." />
 
     </LinearLayout>
