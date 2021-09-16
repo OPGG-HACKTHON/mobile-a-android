@@ -18,7 +18,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/login_service_page"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="458dp"
             android:layout_marginBottom="68dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/login_google_button" />
