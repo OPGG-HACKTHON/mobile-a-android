@@ -7,29 +7,21 @@ import com.opgg.chai.ui.auth.join.form.JoinFormViewModel
 import com.opgg.chai.ui.auth.join.search.JoinSearchViewModel
 import com.opgg.chai.ui.auth.login.LoginViewModel
 import com.opgg.chai.util.GoogleUtils
+import com.opgg.chai.util.SharedPreferenceUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
 @Module
-@InstallIn(FragmentComponent::class)
+@InstallIn(ApplicationComponent::class)
 object AuthModule {
+    @Singleton
     @Provides
     fun provideGoogleClient(@ApplicationContext context: Context) =
         GoogleUtils.getGoogleSignClient(context)
-
-    @Provides
-    fun provideLoginViewModel(googleClient: GoogleSignInClient, retrofit: Retrofit) =
-        LoginViewModel(googleClient, retrofit.create(AuthService::class.java))
-
-    @Provides
-    fun provideJoinFormFragment(@ApplicationContext context: Context, retrofit: Retrofit) =
-        JoinFormViewModel(context, retrofit.create(AuthService::class.java))
-
-    @Provides
-    fun provideJoinSearchFragment(retrofit: Retrofit) =
-        JoinSearchViewModel(retrofit.create(AuthService::class.java))
 }

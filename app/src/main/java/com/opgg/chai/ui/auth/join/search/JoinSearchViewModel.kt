@@ -10,8 +10,9 @@ import com.opgg.chai.model.remote.AuthService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class JoinSearchViewModel(val authService: AuthService) : ViewModel() {
+class JoinSearchViewModel @Inject constructor(val authService: AuthService) : ViewModel() {
     lateinit var navController: NavController
     var division: String = "고등학교" // default value
 

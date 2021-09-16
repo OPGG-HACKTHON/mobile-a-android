@@ -1,6 +1,7 @@
 package com.opgg.chai.di
 
 import com.opgg.chai.model.remote.ApiService
+import com.opgg.chai.model.remote.AuthService
 import com.opgg.chai.model.remote.SettingService
 import dagger.Module
 import dagger.Provides
@@ -34,5 +35,8 @@ object NetworkModule {
 
     @Provides
     fun getSettingService(retrofit: Retrofit) = retrofit.create(SettingService::class.java)
+
+    @Provides
+    fun getAuthService(retrofit: Retrofit) = retrofit.create(AuthService::class.java)
 
 }

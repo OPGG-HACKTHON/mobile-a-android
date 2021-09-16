@@ -10,12 +10,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.opgg.chai.R
 import com.opgg.chai.model.data.auth.User
 import com.opgg.chai.model.remote.AuthService
+import com.opgg.chai.util.SharedPreferenceUtil
 import com.opgg.chai.util.UserUtils
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class JoinFormViewModel constructor(context: Context, private val authService: AuthService) :
+class JoinFormViewModel @Inject constructor(@ApplicationContext context: Context, val authService: AuthService) :
     ViewModel() {
     lateinit var navController: NavController
 
@@ -64,8 +67,7 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
                     }
                     val user: User? = authService.signupUser(authData)
 
-                    UserUtils.userInfo = user
-                    UserUtils.userEmail = _emailAddress.value
+                    saveUserInfo(user,  _emailAddress.value!!)
                     moveHome()
                     setShowProgress(false)
                 } catch (e: Exception) {
@@ -86,5 +88,12 @@ class JoinFormViewModel constructor(context: Context, private val authService: A
         withContext(Dispatchers.Main) {
             isShow.value = _isShow
         }
+    }
+
+    fun saveUserInfo(user: User?, email: String) {
+        UserUtils.userInfo = user
+        UserUtils.userEmail = email
+
+        SharedPreferenceUtil.addValue(SharedPreferenceUtil.emailKey, email) // 이메일 정보 저장
     }
 }
