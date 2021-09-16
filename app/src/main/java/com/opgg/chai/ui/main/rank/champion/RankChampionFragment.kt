@@ -51,11 +51,10 @@ class RankChampionFragment: Fragment() {
 
         choseChampion?.let {
             binding.rankChampionName.text = "${it.name} 랭킹"
-            binding.rankChampionImage.loadImage(it.image)
+            binding.rankChampionImage.loadImage(it.bigImage)
         }
         subscribeObserver()
         vm.loadCompareCategories()
-        vm.loadRanks()
 
         binding.rankChampionCategoryGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             if(radioGroup.findViewById<RadioButton>(checkedId) != null) {
@@ -89,10 +88,13 @@ class RankChampionFragment: Fragment() {
                 binding.rankChampionCategoryGroup.addView(item)
             }
 
-            for(children in binding.rankChampionCategoryGroup.children) {
-                if(children is RadioButton) {
-                    if(children.text == arguments?.getParcelable<CompareCategoryItem>("compareCategory")?.name) {
-                        children.isChecked = true
+            for(child in binding.rankChampionCategoryGroup.children) {
+                if(child is RadioButton) {
+                    if(child.text == arguments?.getParcelable<CompareCategoryItem>("compareCategory")?.name) {
+                        child.isChecked = true
+                        binding.rankChampionScroll.postDelayed({
+                            binding.rankChampionScroll.scrollTo(child.x.toInt(), 0)
+                        }, 100)
                         break
                     }
                 }

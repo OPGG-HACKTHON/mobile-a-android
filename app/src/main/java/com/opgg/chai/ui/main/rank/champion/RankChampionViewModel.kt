@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.opgg.chai.model.data.ChampionItem
 import com.opgg.chai.model.data.CompareCategoryItem
 import com.opgg.chai.model.data.RankItem
+import com.opgg.chai.model.data.auth.UserInfo
 import com.opgg.chai.model.remote.ApiService
 import com.opgg.chai.model.repository.LoLRepository
 import com.opgg.chai.util.UserUtils
@@ -50,7 +51,7 @@ class RankChampionViewModel @ViewModelInject constructor(
         }
 
         items.forEach {
-            if(choseCompareCategory != null && it.id == choseCompareCategory!!.id) {
+            if(it.id == choseCompareCategory?.id) {
                 it.isSelected = true
             }
         }
@@ -58,29 +59,30 @@ class RankChampionViewModel @ViewModelInject constructor(
     }
 
     fun loadRanks() = viewModelScope.launch {
-        if(choseChampion != null && choseCompareCategory != null) {
+        if(UserUtils.userInfo?.id != null && UserUtils.userInfo?.school?.id != null) {
             _progress.value = true
             val response = apiService.getChampionRank(
-                choseChampion!!.id.toString(),
-                choseCompareCategory!!.id.toString(),
-                UserUtils.userInfo?.school?.id ?: "Dd")
+                choseChampion?.id ?: 0,
+                choseCompareCategory?.id ?: 0,
+                UserUtils.userInfo?.school?.id ?: ""
+            )
 
             val myRankResponse = apiService.getChampionRankByUserId(
-                choseChampion!!.id.toString(),
-                choseCompareCategory!!.id.toString(),
-                UserUtils.userInfo?.school?.id ?: "Dd",
-                UserUtils.userInfo?.id.toString()
+                choseChampion?.id ?: 0,
+                choseCompareCategory?.id ?: 0,
+                UserUtils.userInfo?.school?.id ?: "",
+                UserUtils.userInfo?.id ?: 0
             )
 
             val items = mutableListOf<RankItem>()
             val notIncludeMeItems = response.filter { it.id != myRankResponse.id }
-                .map { it.parserRankItem() }.toList()
+                .map { it.parserChampionRankItem() }.toList()
 
-            items.add(myRankResponse.parserRankItem(me = true))
+            items.add(myRankResponse.parserChampionRankItem(me = true))
             items.addAll(notIncludeMeItems)
+            items.add(RankItem())
             _championRanks.value = items
             _progress.value = false
         }
     }
-
 }
