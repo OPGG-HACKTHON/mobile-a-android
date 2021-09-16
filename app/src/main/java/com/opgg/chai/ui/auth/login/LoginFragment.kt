@@ -17,6 +17,7 @@ import javax.inject.Inject
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     @Inject override lateinit var viewModel: LoginViewModel
     override val layoutRes: Int = R.layout.fragment_login
+    private val slideAdapter = LoginSlideAdapter()
 
     private val loginWithGoogle = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         try {
@@ -36,6 +37,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
+        initLayout()
+
         binding.loginGoogleButton.setOnClickListener { viewModel.googleClient.signInIntent.apply{ loginWithGoogle.launch(this)} }
 
         return view
@@ -44,5 +47,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun onStart() {
         super.onStart()
         viewModel.checkIsAlreadySigned()
+    }
+
+    fun initLayout() {
+        binding.loginServicePage.offscreenPageLimit = 1
+        binding.loginServicePage.adapter = slideAdapter
     }
 }
