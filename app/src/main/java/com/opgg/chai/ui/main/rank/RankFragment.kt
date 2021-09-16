@@ -39,6 +39,9 @@ class RankFragment : Fragment() {
                 setListener(onRankItemClick)
             }
         }
+
+        val viewType = arguments?.get("viewType") as Int? ?: 0
+        vm.viewType = viewType
         subscribeObserver()
     }
 

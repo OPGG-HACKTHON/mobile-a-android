@@ -39,10 +39,6 @@ class RankViewModel @ViewModelInject constructor(
     val progress: LiveData<Boolean>
         get() = _progress
 
-    init {
-        viewType = 0
-    }
-
     private fun loadSchoolRank() = viewModelScope.launch {
         UserUtils.userInfo?.let {
             if(it.school?.regionId != null && it.school.id != null && it.school.division != null) {
