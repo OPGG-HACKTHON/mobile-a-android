@@ -7,6 +7,7 @@
         <variable
             name="data"
             type="com.opgg.chai.model.data.RankItem" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,15 +37,36 @@
             android:textStyle="bold"
             android:textSize="14sp"
             android:textColor="@color/grey100"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="2dp"
             android:layout_marginStart="12dp"
             tools:text="쪼렙이다말로하자"
             android:id="@+id/battle_name"
-            app:layout_constraintRight_toLeftOf="@id/battle_recent_guide"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintRight_toLeftOf="@id/battle_title"
             app:layout_constraintTop_toTopOf="@id/battle_profile_img"
             app:layout_constraintLeft_toRightOf="@id/battle_profile_img"
             app:layout_constraintBottom_toTopOf="@id/battle_school"
-            android:layout_width="0dp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginEnd="16dp"
+            tools:text="쿼드라러 카서스"
+            android:padding="4dp"
+            android:textSize="6sp"
+            android:textColor="@color/grey100"
+            tools:background="@drawable/bg_random_small_title"
+            android:id="@+id/battle_title"
+            app:randomBackgroundImage="@{1}"
+            android:visibility="invisible"
+            android:text="@{data.fieldTitle}"
+            app:layout_constraintLeft_toRightOf="@id/battle_name"
+            app:layout_constraintRight_toLeftOf="@id/battle_recent_guide"
+            app:layout_constraintTop_toTopOf="@id/battle_name"
+            app:layout_constraintBottom_toBottomOf="@id/battle_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView

@@ -19,6 +19,12 @@ class RankCompareChampionViewHolder(view: View): BaseViewHolder<ItemRankBinding,
 
     override fun onBind(item: RankItem) {
         binding.data = item
+
+        binding.battleTitle.visibility = if(item.rank == "1" && item.fieldTitle != "") {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
     }
 
 }
