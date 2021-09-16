@@ -49,7 +49,8 @@
                 android:text="@string/rank_in_school"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rank_in_school_back"
+                app:layout_constraintBottom_toBottomOf="@id/rank_in_school_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

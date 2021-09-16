@@ -71,9 +71,9 @@ class HomeViewModel @Inject constructor(
 
     private fun loadSchoolRankInRegion() = viewModelScope.launch {
         UserUtils.userInfo?.let {
-            if(it.school?.regionId != null) {
+            if(it.school?.regionId != null && it.school.id != null && it.school.division != null) {
                 val myRankResponse =
-                    apiService.getSchoolRankBySchoolId(it.school.regionId, it.school.name ?: "")
+                    apiService.getSchoolRankBySchoolId(it.school.regionId, it.school.division, it.school.id)
                 _schoolRankInRegion.value = myRankResponse.parserRankItem(me = true)
 
             }

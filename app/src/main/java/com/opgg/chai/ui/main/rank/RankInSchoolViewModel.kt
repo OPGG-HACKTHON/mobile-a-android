@@ -36,8 +36,7 @@ class RankInSchoolViewModel @ViewModelInject constructor(
     fun loadRank() = viewModelScope.launch {
         school?.let {
             _progress.value = true
-            val seoulHighSchoolId = "B000012052" // todo 이전 값이 더미여서 임시 추가함. 서버개발완료시 변경 예정
-            val response = apiService.getRanksInSchool(seoulHighSchoolId)
+            val response = apiService.getRanksInSchool(it.id)
             val items = response
                 .take(RANK_COUNT)
                 .map { rankInSchoolData ->

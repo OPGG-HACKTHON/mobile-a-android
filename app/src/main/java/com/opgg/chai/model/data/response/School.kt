@@ -22,11 +22,11 @@ data class School (
     @Json(name = "region")
     val region: String?,
     @Json(name = "address")
-    val address: String,
+    val address: String?,
     @Json(name = "createdAt")
-    val createdAt: String,
+    val createdAt: String?,
     @Json(name = "updatedAt")
-    val updatedAt: String,
+    val updatedAt: String?,
     @Json(name = "imageUrl")
     val imageUrl: String?
 
@@ -34,7 +34,7 @@ data class School (
 
     fun parserRankItem(me: Boolean = false): RankItem {
         return RankItem(
-            id = 0,
+            id = id,
             name = name,
             image = imageUrl ?: "",
             score = "통합점수 ${NumberFormat.getInstance().format(point)} LP",

@@ -45,13 +45,14 @@ class RankViewModel @ViewModelInject constructor(
 
     private fun loadSchoolRank() = viewModelScope.launch {
         UserUtils.userInfo?.let {
-            if(it.school?.regionId != null && it.school?.id != null) {
+            if(it.school?.regionId != null && it.school.id != null && it.school.division != null) {
                 _progress.value = true
-                val response = apiService.getSchoolRanks(it.school.regionId)
-                val myRankResponse = apiService.getSchoolRankBySchoolId(it.school.regionId, it.school.id)
+                val response = apiService.getSchoolRanks(it.school.regionId, it.school.division)
+                val myRankResponse = apiService.getSchoolRankBySchoolId(it.school.regionId, it.school.division, it.school.id)
                 val regionName = regionRepository.getRegionNameBy(it.school.regionId)
 
                 val items = response
+                    .filter { it.id != myRankResponse.id }
                     .map { rankInSchoolData ->
                         rankInSchoolData.parserRankItem()
                     }.toMutableList()

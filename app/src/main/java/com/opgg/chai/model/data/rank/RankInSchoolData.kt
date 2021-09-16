@@ -16,7 +16,7 @@ data class RankInSchoolData(
 
     fun parserRankItem(me: Boolean = false): RankItem {
         return RankItem(
-            id = id,
+            id = id.toString(),
             image = lol.profileIconImageUrl,
             name = lol.name,
             score = "${lol.tierInfo.tier} ${lol.tierInfo.rank} ${NumberFormat.getInstance().format(lol.tierInfo.leaguePoints)} LP",
@@ -28,7 +28,7 @@ data class RankInSchoolData(
 
     fun parserChampionRankItem(me: Boolean = false): RankItem {
         return RankItem(
-            id = id,
+            id = id.toString(),
             image = lol.profileIconImageUrl,
             name = lol.name,
             score = "${fieldName ?: ""} ${value ?: ""}",
