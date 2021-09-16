@@ -10,6 +10,8 @@
     <string name="home_setting_title">타이틀 설정</string>
     <string name="home_detail">자세히</string>
     <string name="home_no_badge">타이틀을 설정해 보세요</string>
+    <string name="home_my_rank_in_school">%s에서 나의 랭크</string>
+    <string name="home_my_school_rank_in_region">%s에서 우리 학교 랭크</string>
 
     <!-- rank !-->
     <string name="rank">랭킹</string>
@@ -26,6 +28,8 @@
     <string name="rank_champion_choice_submit">챔피언 선택완료</string>
     <string name="rank_champion_choice_data_submit">데이터 선택완료</string>
 
+    <string name="rank_my_rank_in_school">%s에서 나의 랭크</string>
+    <string name="rank_my_school_rank_in_region">%s에서 우리 학교 랭크</string>
 
     <!-- auth -->
     <string name="server_client_id">742823777512-r3petmmlnt08radg6uu8hhecubnutpov.apps.googleusercontent.com</string>

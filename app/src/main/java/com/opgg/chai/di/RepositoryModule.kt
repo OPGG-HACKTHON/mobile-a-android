@@ -3,6 +3,7 @@ package com.opgg.chai.di
 import com.opgg.chai.model.remote.ApiService
 import com.opgg.chai.model.remote.SettingService
 import com.opgg.chai.model.repository.LoLRepository
+import com.opgg.chai.model.repository.RegionRepository
 import com.opgg.chai.model.repository.SettingRepository
 import dagger.Module
 import dagger.Provides
@@ -24,4 +25,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideSettingRepository(settingService: SettingService) = SettingRepository(settingService)
+
+
+    @Provides
+    @Singleton
+    fun provideRegionRepository(
+        apiService: ApiService) = RegionRepository(apiService)
 }

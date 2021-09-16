@@ -26,13 +26,17 @@ data class School (
     @Json(name = "createdAt")
     val createdAt: String,
     @Json(name = "updatedAt")
-    val updatedAt: String
+    val updatedAt: String,
+    @Json(name = "imageUrl")
+    val imageUrl: String?
+
 ) {
 
     fun parserRankItem(me: Boolean = false): RankItem {
         return RankItem(
             id = 0,
             name = name,
+            image = imageUrl ?: "",
             score = "통합점수 ${NumberFormat.getInstance().format(point)} LP",
             isRankUp = rankChangedStatus ?: "NEW",
             rank = rankNo.toString(),

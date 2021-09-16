@@ -8,12 +8,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.model.remote.ApiService
+import com.opgg.chai.model.repository.RegionRepository
 import com.opgg.chai.util.UserUtils
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val apiService: ApiService,
+    private val regionRepository: RegionRepository,
     application: Application
 ): AndroidViewModel(application) {
 
@@ -29,6 +31,10 @@ class HomeViewModel @Inject constructor(
     val myProfile: LiveData<RankItem>
         get() = _myProfile
 
+    private var _myRegionName = MutableLiveData<String>()
+    val myRegionName: LiveData<String>
+        get() = _myRegionName
+
     init {
         loadMyProfile()
         loadRankInSchool()
@@ -36,38 +42,40 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    fun loadMyProfile() = viewModelScope.launch {
+    private fun loadMyProfile() = viewModelScope.launch {
         UserUtils.userInfo?.let {
-            try {
-                val response = apiService.getProfileBy(it.id.toString())
-
+            if(it.id != null) {
+                val response = apiService.getProfileBy(it.id)
                 _myProfile.value = response.parserRankItem()
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
         }
     }
 
-    fun loadRankInSchool() = viewModelScope.launch {
-        UserUtils.userInfo?.let { userInfo ->
-            try {
+    private fun loadRankInSchool() = viewModelScope.launch {
+        UserUtils.userInfo?.let {
+            if(it.school?.id != null && it.id != null) {
+                if(it.school.regionId != null) {
+                    loadRegionName(it.school.regionId)
+                }
                 val myRankResponse =
-                    apiService.getRankByUserId(userInfo?.school?.name ?: "", userInfo?.id ?: 1)
+                    apiService.getRankByUserId(it.school.id, it.id)
                 _rankInSchool.value = myRankResponse.parserRankItem(me = true)
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
             }
         }
     }
 
-    fun loadSchoolRankInRegion() = viewModelScope.launch {
-        UserUtils.userInfo?.let { userInfo ->
-            try {
+    private suspend fun loadRegionName(id: Int) {
+        val regionName = regionRepository.getRegionNameBy(id)
+        _myRegionName.value = regionName
+    }
+
+    private fun loadSchoolRankInRegion() = viewModelScope.launch {
+        UserUtils.userInfo?.let {
+            if(it.school?.regionId != null) {
                 val myRankResponse =
-                    apiService.getSchoolRankBySchoolId("1", userInfo?.school?.name ?: "")
+                    apiService.getSchoolRankBySchoolId(it.school.regionId, it.school.name ?: "")
                 _schoolRankInRegion.value = myRankResponse.parserRankItem(me = true)
-            }catch (e: java.lang.Exception) {
-                e.printStackTrace()
+
             }
         }
     }

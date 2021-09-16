@@ -8,13 +8,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.opgg.chai.model.data.RankItem
 import com.opgg.chai.model.remote.ApiService
-import com.opgg.chai.util.UserUtils
 import kotlinx.coroutines.launch
 
 class RankInSchoolViewModel @ViewModelInject constructor(
     private val apiService: ApiService,
     application: Application):
     AndroidViewModel(application) {
+
+    companion object {
+        const val RANK_COUNT = 10
+    }
 
     var school: RankItem? = null
 
@@ -33,18 +36,17 @@ class RankInSchoolViewModel @ViewModelInject constructor(
     fun loadRank() = viewModelScope.launch {
         school?.let {
             _progress.value = true
-            val response = apiService.getRanksInSchool(it.id.toString())
-//            val school = apiService.getSchoolBy(it.id.toString())
-            val school = apiService.getSchoolBy("B000011965") // todo Test
+            val seoulHighSchoolId = "B000012052" // todo 이전 값이 더미여서 임시 추가함. 서버개발완료시 변경 예정
+            val response = apiService.getRanksInSchool(seoulHighSchoolId)
             val items = response
+                .take(RANK_COUNT)
                 .map { rankInSchoolData ->
                     rankInSchoolData.parserRankItem()
                 }.toMutableList()
 
-            items.add(0, RankItem(viewType = "HEADER", title = "${school.name} 랭킹 TOP 10"))
+            items.add(0, RankItem(viewType = "HEADER", title = "${it.name} 랭킹 TOP $RANK_COUNT"))
             items.add(items.size, RankItem(viewType = "FOOTER"))
             _ranks.value = items
-//            _title.value = "${school.name} 랭킹 TOP 10"
             _progress.value = false
         }
     }
