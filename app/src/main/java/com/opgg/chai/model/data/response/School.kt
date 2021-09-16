@@ -22,11 +22,11 @@ data class School (
     @Json(name = "region")
     val region: String?,
     @Json(name = "address")
-    val address: String,
+    val address: String?,
     @Json(name = "createdAt")
-    val createdAt: String,
+    val createdAt: String?,
     @Json(name = "updatedAt")
-    val updatedAt: String,
+    val updatedAt: String?,
     @Json(name = "imageUrl")
     val imageUrl: String?
 
