@@ -34,7 +34,7 @@ data class School (
 
     fun parserRankItem(me: Boolean = false): RankItem {
         return RankItem(
-            id = 0,
+            id = id,
             name = name,
             image = imageUrl ?: "",
             score = "통합점수 ${NumberFormat.getInstance().format(point)} LP",

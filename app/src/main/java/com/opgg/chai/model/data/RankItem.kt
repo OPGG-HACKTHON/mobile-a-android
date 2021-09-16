@@ -6,7 +6,7 @@ import com.opgg.chai.R
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class RankItem(val id: Int = 0,
+data class RankItem(val id: String = "",
                     val image: String = "",
                     val name: String = "",
                     val score: String = "",

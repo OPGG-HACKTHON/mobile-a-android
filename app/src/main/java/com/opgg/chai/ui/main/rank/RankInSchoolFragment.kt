@@ -14,6 +14,7 @@ import com.opgg.chai.R
 import com.opgg.chai.ui.main.rank.adapters.RankAdapter
 import com.opgg.chai.databinding.FragmentRankInSchoolBinding
 import com.opgg.chai.model.data.RankItem
+import com.opgg.chai.util.extension.loadRoundedCornerImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,6 +45,7 @@ class RankInSchoolFragment: Fragment()   {
 
         val school = arguments?.getParcelable<RankItem>("rankItem")
         school?.let {
+            binding.rankInSchoolProfileImage.loadRoundedCornerImage(it.image)
             binding.rankInSchoolProfileName.text = it.name
             binding.rankInSchoolValue.text = it.rank
             binding.rankInSchoolProfileScore.text = it.score
