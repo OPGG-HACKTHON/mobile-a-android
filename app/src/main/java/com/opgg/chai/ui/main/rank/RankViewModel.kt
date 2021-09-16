@@ -39,10 +39,6 @@ class RankViewModel @ViewModelInject constructor(
     val progress: LiveData<Boolean>
         get() = _progress
 
-    init {
-        viewType = 0
-    }
-
     private fun loadSchoolRank() = viewModelScope.launch {
         UserUtils.userInfo?.let {
             if(it.school?.regionId != null && it.school.id != null && it.school.division != null) {
@@ -53,6 +49,7 @@ class RankViewModel @ViewModelInject constructor(
 
                 val items = response
                     .filter { it.id != myRankResponse.id }
+                    .filter { school -> school.point != 0 } // 16일 회의시 점수 0점인것 리스트에서 제외하도록 협의(클라이언트)
                     .map { rankInSchoolData ->
                         rankInSchoolData.parserRankItem()
                     }.toMutableList()

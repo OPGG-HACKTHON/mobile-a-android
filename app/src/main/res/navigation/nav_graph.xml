@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_homeFragment_to_battleFragment"
             app:destination="@id/battleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"

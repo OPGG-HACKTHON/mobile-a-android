@@ -29,10 +29,6 @@ class RankInSchoolViewModel @ViewModelInject constructor(
     val progress: LiveData<Boolean>
         get() = _progress
 
-    private var _title = MutableLiveData("")
-    val title: LiveData<String>
-        get() = _title
-
     fun loadRank() = viewModelScope.launch {
         school?.let {
             _progress.value = true

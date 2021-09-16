@@ -29,6 +29,12 @@ class RankViewHolder(view: View): BaseViewHolder<ItemRankBodyBinding, RankItem>(
 
     override fun onBind(item: RankItem) {
         binding.data = item
+
+        binding.rankItemLayout.battleTitle.visibility = if(item.fieldTitle != "") {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
     }
 
 }

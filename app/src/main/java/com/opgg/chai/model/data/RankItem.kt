@@ -15,6 +15,7 @@ data class RankItem(val id: String = "",
                     val rank: String = "",
                     val me: Boolean = false,
                     val title: String = "",
+                    val fieldTitle: String = "",
                     val viewType: String = "BODY"): Parcelable {
 
     fun getRankArrowImage(): Int {
