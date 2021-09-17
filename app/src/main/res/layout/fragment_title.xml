@@ -51,13 +51,12 @@
             android:id="@+id/profile_img"
             android:layout_marginTop="20dp"
             android:layout_marginStart="21dp"
-            android:background="@drawable/round_rectangle"
             android:scaleType="fitXY"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_header"
             android:layout_width="93dp"
             android:layout_height="93dp"
-            image="@{viewmodel.userInfo.lol.profileIconImageUrl}"/>
+            roundedImage="@{viewmodel.userInfo.lol.profileIconImageUrl}"/>
 
         <TextView
             style="@style/title1"
