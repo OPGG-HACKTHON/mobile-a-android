@@ -17,7 +17,7 @@ data class Champion(
         return ChampionItem(
             id = id,
             image = imageUrl,
-            bigImage = bigImageUrl,
+            bigImage = imageUrl,
             name = name)
     }
 
